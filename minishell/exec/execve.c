@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 22:47:18 by mbouaza           #+#    #+#             */
-/*   Updated: 2023/11/15 23:21:31 by mbouaza          ###   ########.fr       */
+/*   Updated: 2023/12/10 04:37:51 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void shell_execve(t_shell *shell)
+void shell_execve(char *e_cmd, char **env, t_shell *shell)
 {
 	int i;
 	char *str;
@@ -21,18 +21,20 @@ void shell_execve(t_shell *shell)
 
 	i = 0;
 	cpy = NULL;
+	shell->p_cmd = cut_cmd(e_cmd);
 	str = ft_getenv("PATH", shell->env);
 	bash = ft_split(str, ':');
 	free(str);
 	while (bash[i]) // /bin/bash
 	{
 		str = ft_join(bash[i++], "/");
-		cpy = ft_join(str, shell->all[0]); // a changer
+		cpy = ft_join(str, shell->p_cmd[0]); // a changer
 		free(str);
-		execve(cpy, shell->all, shell->env);
+		execve(cpy, shell->p_cmd, env);
 		free(cpy);
 	}
 	tab_free(bash);
-	printf("minishell: %s: command not found\n", shell->all[0]);
+	printf("minishell: %s: command not found\n", shell->p_cmd[0]);
 	set_status(127, shell);
+	exit(0);
 }

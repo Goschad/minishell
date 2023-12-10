@@ -25,6 +25,7 @@ SRCS = 	main.c \
 		parsing/spaces_maker.c \
 		parsing/cut_cmd.c \
 		exec/execve.c \
+		exec/execute_pipe.c \
 		get_next_line/get_next_line.c \
 		get_next_line/get_next_line_utils.c
 

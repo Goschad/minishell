@@ -11,6 +11,7 @@
 # include <errno.h>
 # include <sys/stat.h>
 # include <sys/types.h>
+# include <sys/wait.h>
 # include <readline/history.h>
 # include <readline/readline.h>
 # include "../get_next_line/get_next_line.h"
@@ -20,6 +21,11 @@
 // --- [ define ] --- //
 
 // --- [ structure ] --- //
+
+struct Pipe
+{
+	int n_steps;
+} typedef t_pipe;
 
 struct parse
 {
@@ -35,9 +41,11 @@ struct shell
 	int		or_nbr;
 	int		status;
 	char	**all;
+	char	**p_cmd;
+	char	**cmd;
 	char	**env;
 	t_parse *parse;
-
+	t_pipe  pipeline;
 
 } typedef t_shell;
 
@@ -72,7 +80,8 @@ char 	**cut_cmd(char *line);
 
 /* exec */
 
-void 	shell_execve(t_shell *shell);
+void 	shell_execve(char *e_cmd, char **env, t_shell *shell);
+void 	execute_pipeline(t_shell *shell, int i, int j, int input_fd);
 
 /* history */
 
