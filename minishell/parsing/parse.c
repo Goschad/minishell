@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 04:09:26 by mbouaza           #+#    #+#             */
-/*   Updated: 2023/12/10 04:31:52 by marvin           ###   ########.fr       */
+/*   Updated: 2023/12/14 13:28:34 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,8 @@ void parse(char *readed, t_shell *shell)
 	i = 0;
 	debug(readed);
 	shell->all = cut_cmd(readed);
-	shell->pipeline.n_steps = count_pipe(shell->all) + 1; // le nb de cmds, pas le nb de pipe
-	shell->cmd = make_cmds(shell->all, shell->pipeline.n_steps, 0, 0);
+	shell->pipl.n_steps = count_pipe(shell->all) + 1; // le nb de cmds, pas le nb de pipe
+	shell->cmd = make_cmds(shell->all, shell->pipl.n_steps, 0, 0);
 	execute_pipeline(shell, -1, -1, 0);
 	tab_free(shell->all);
 }

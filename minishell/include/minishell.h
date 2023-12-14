@@ -45,7 +45,7 @@ struct shell
 	char	**cmd;
 	char	**env;
 	t_parse *parse;
-	t_pipe  pipeline;
+	t_pipe  pipl;
 
 } typedef t_shell;
 

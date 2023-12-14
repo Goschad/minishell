@@ -6,7 +6,7 @@ Marwen :
 - convert variable d'env : false
 - quote : true (juste la fonction qui enleve les quotes mais elle est pas encore utilisée)
 - pipe : true
-- redirection : false
+- redirection : false (c du caca)
 - ^D quitte pas + ^C quitte + \n : false
 
 Julien :
@@ -17,7 +17,9 @@ Julien :
 - pwd : false
 - export : false
 - unset : false
-- signal ^D + ^C : false
+- signal ^D + ^C + ^\ : false
 - wildcard : false (la fonction qui envoie la liste des fichier du repertoire courant est prete tu as juste a check si le (exemple) "*.c" fini par .c)
+
+pwd -> echo -> exit -> cd -> export / unset
 
 PS : 🎉 Bon courage 🎉 Force a toi 🎉 Stresse pas 🎉
