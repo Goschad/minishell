@@ -27,24 +27,14 @@ struct Pipe
 	int n_steps;
 } typedef t_pipe;
 
-struct parse
-{
-	char *complete_cmd;
-	char **split_cmd;
-} typedef t_parse;
-
 struct shell
 {
 	int		mini;
-	int		pipe_nbr;
-	int		and_nbr;
-	int		or_nbr;
 	int		status;
 	char	**all;
 	char	**p_cmd;
 	char	**cmd;
 	char	**env;
-	t_parse *parse;
 	t_pipe  pipl;
 
 } typedef t_shell;
@@ -54,6 +44,8 @@ struct shell
 // tmp
 
 void print_tab(char **tab);
+
+/* builtins */
 
 /* launch */
 
@@ -67,6 +59,7 @@ int		update(char c, int *in_q);
 
 void 	parse(char *readed, t_shell *shell);
 
+void	change_nl(char *readed);
 char 	*reboot_line(char *readed);
 
 char 	*wildcard(char *readed);
@@ -77,6 +70,8 @@ int		check_quote(char *s);
 char 	*rebuild_space_line(char *readed, int j, int in_q);
 
 char 	**cut_cmd(char *line);
+
+void find_bull(t_shell *shell, char **cmd);
 
 /* exec */
 

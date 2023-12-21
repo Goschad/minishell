@@ -18,6 +18,7 @@ SRCS = 	main.c \
 		launch/launch_shell.c \
 		history/history.c \
 		parsing/quotes.c \
+		parsing/parse_bull.c \
 		parsing/parse.c \
 		parsing/token.c \
 		parsing/wildcard.c \

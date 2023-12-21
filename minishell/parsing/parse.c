@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 04:09:26 by mbouaza           #+#    #+#             */
-/*   Updated: 2023/12/14 13:28:34 by mbouaza          ###   ########.fr       */
+/*   Updated: 2023/12/21 16:15:09 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,8 @@ static void token(char **cmds, int i)
 static void debug(char *readed)
 {
 	printf("---------------------- info ----------------------\n");
-	// printf("• quotes parse = %s\n", quoted_line(readed));
-	// printf("• space rebuid parse = %s\n", rebuild_space_line(readed, 0, 0));
+	printf("• quotes parse = %s\n", quoted_line(readed));
 	// printf("• quotes parse = %s\n", var_conversion(readed));
-	// printf("• pipe number = %d\n", count_pipe(readed));
-	// printf("• or number = %d\n", count_or(readed));
 	printf("--------------------------------------------------\n");
 }
 
@@ -99,9 +96,12 @@ void parse(char *readed, t_shell *shell)
 
 	i = 0;
 	debug(readed);
+	change_nl(readed);
 	shell->all = cut_cmd(readed);
 	shell->pipl.n_steps = count_pipe(shell->all) + 1; // le nb de cmds, pas le nb de pipe
 	shell->cmd = make_cmds(shell->all, shell->pipl.n_steps, 0, 0);
-	execute_pipeline(shell, -1, -1, 0);
+	shell->p_cmd = cut_cmd(shell->cmd[0]); // tmp
+	find_bull(shell, shell->p_cmd);
+	// execute_pipeline(shell, -1, -1, 0); // utiliser pour les pipe
 	tab_free(shell->all);
 }

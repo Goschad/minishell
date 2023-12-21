@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   remake_line.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 05:45:11 by mbouaza           #+#    #+#             */
-/*   Updated: 2023/11/10 17:38:13 by mbouaza          ###   ########.fr       */
+/*   Updated: 2023/12/21 15:58:50 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,19 @@ static int check_eol(char *readed)
 			return (0);
 	}
 	return (1);
+}
+
+void change_nl(char *readed)
+{
+	int i;
+
+	i = 0;
+	while (readed[i])
+	{
+		if (readed[i] == '\n')
+			readed[i] = '\0';
+		i++;
+	}
 }
 
 char *reboot_line(char *readed)
