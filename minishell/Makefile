@@ -28,7 +28,11 @@ SRCS = 	main.c \
 		exec/execve.c \
 		exec/execute_pipe.c \
 		get_next_line/get_next_line.c \
-		get_next_line/get_next_line_utils.c
+		get_next_line/get_next_line_utils.c \
+		builtin/pwd.c \
+		builtin/env.c \
+		builtin/echo.c \
+		
 
 READ_LIB = -lreadline -L/Users/$$USER/.brew/opt/readline/lib
 
@@ -47,7 +51,7 @@ $(NAME): $(OBJS)
 	@sleep 0.1;
 	@/bin/echo -n ">"
 	@/bin/echo " success download 🥳"
-	@/bin/echo "minishell made by jguerin && mbouaza"
+	@/bin/echo "minishell made by jguerin"
 
 clear:
 	@rm -rf history/.shellHistory

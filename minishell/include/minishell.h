@@ -47,6 +47,10 @@ void print_tab(char **tab);
 
 /* builtins */
 
+void	pwd(void);
+void	env(char **env);
+int		echo(char *args[]);
+
 /* launch */
 
 void 	launch(t_shell *shell);
@@ -71,7 +75,7 @@ char 	*rebuild_space_line(char *readed, int j, int in_q);
 
 char 	**cut_cmd(char *line);
 
-void find_bull(t_shell *shell, char **cmd);
+void find_bull(t_shell *shell, int i);
 
 /* exec */
 

@@ -11,10 +11,11 @@ Marwen :
 
 Julien :
 
-- echo : false
-- exit : false
+- echo : WIP
+- env : True
+- exit : WIP
 - cd : false
-- pwd : false
+- pwd : True
 - export : false
 - unset : false
 - signal ^D + ^C + ^\ : false

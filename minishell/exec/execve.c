@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 22:47:18 by mbouaza           #+#    #+#             */
-/*   Updated: 2023/12/10 04:37:51 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/04 15:40:44 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void shell_execve(char *e_cmd, char **env, t_shell *shell)
 
 	i = 0;
 	cpy = NULL;
-	shell->p_cmd = cut_cmd(e_cmd);
 	str = ft_getenv("PATH", shell->env);
 	bash = ft_split(str, ':');
 	free(str);

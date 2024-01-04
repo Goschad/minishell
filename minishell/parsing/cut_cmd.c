@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cut_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 04:28:53 by GIGI              #+#    #+#             */
-/*   Updated: 2023/12/09 09:47:56 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/04 16:14:29 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ char **cut_cmd(char *line)
     char **quoted;
     char **cmds;
 
+    
     quoted = sub_quoted_str(line, 0, 0);
     fill_line(line);
     cmds = ft_split(line, ' ');
