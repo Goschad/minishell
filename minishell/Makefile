@@ -5,6 +5,8 @@ CC	 =	@gcc
 FLAGS = -Wall -Werror -Wextra
 
 SRCS = 	main.c \
+		builtins/env.c \
+		builtins/echo.c \
 		utils/basic_check.c \
 		utils/print_type.c \
 		utils/init_struct.c \
@@ -27,12 +29,9 @@ SRCS = 	main.c \
 		parsing/cut_cmd.c \
 		exec/execve.c \
 		exec/execute_pipe.c \
+		exec/redir.c \
 		get_next_line/get_next_line.c \
-		get_next_line/get_next_line_utils.c \
-		builtin/pwd.c \
-		builtin/env.c \
-		builtin/echo.c \
-		
+		get_next_line/get_next_line_utils.c
 
 READ_LIB = -lreadline -L/Users/$$USER/.brew/opt/readline/lib
 
@@ -51,7 +50,7 @@ $(NAME): $(OBJS)
 	@sleep 0.1;
 	@/bin/echo -n ">"
 	@/bin/echo " success download 🥳"
-	@/bin/echo "minishell made by jguerin"
+	@/bin/echo "minishell made by jguerin && mbouaza"
 
 clear:
 	@rm -rf history/.shellHistory

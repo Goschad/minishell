@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:11:54 by mbouaza           #+#    #+#             */
-/*   Updated: 2023/12/21 16:14:07 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/05 12:09:48 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@ void tab_free(char **tab)
 	int i;
 
 	i = 0;
-	while (tab[i])
+	while (tab && tab[i])
 		free(tab[i++]);
-	free(tab);
+	if (tab)
+		free(tab);
 }
 
 void global_free(t_shell *shell)

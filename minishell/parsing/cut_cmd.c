@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cut_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 04:28:53 by GIGI              #+#    #+#             */
-/*   Updated: 2024/01/04 16:14:29 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/01/05 12:07:15 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ static char **sub_quoted_str(char *line, int i, int j)
 
     s = 0;
     in_q = 0;
+    quoted = NULL;
     quoted = malloc(sizeof(char *) * (quotes_cmd_size(line) + 1));
     if (!quoted)
         return (NULL);
@@ -101,7 +102,8 @@ char **cut_cmd(char *line)
     char **quoted;
     char **cmds;
 
-    
+    quoted = NULL;
+    cmds = NULL;
     quoted = sub_quoted_str(line, 0, 0);
     fill_line(line);
     cmds = ft_split(line, ' ');

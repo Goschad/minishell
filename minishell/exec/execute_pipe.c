@@ -44,8 +44,11 @@ void execute_pipeline(t_shell *shell, int i, int j, int input_fd)
         if (pid == 0)
         {
             pipeline_cut(i, &input_fd, pipefd, shell->pipl.n_steps - 1);
-            print_tab(shell->p_cmd);
-            find_bull(shell, i);
+            shell->p_cmd = cut_cmd(shell->cmd[i]);
+            // redir(shell, shell->p_cmd);
+            find_bull(shell, shell->p_cmd, i);
+            tab_free(shell->p_cmd);
+            shell->p_cmd = NULL;
         }
         if (i != 0)
             close(input_fd);

@@ -31,6 +31,7 @@ struct shell
 {
 	int		mini;
 	int		status;
+	int		redir;
 	char	**all;
 	char	**p_cmd;
 	char	**cmd;
@@ -47,9 +48,9 @@ void print_tab(char **tab);
 
 /* builtins */
 
-void	pwd(void);
-void	env(char **env);
-int		echo(char *args[]);
+void b_env(t_shell *shell, char **cmd, char **env);
+
+void b_echo(t_shell *shell, char **cmd);
 
 /* launch */
 
@@ -75,12 +76,14 @@ char 	*rebuild_space_line(char *readed, int j, int in_q);
 
 char 	**cut_cmd(char *line);
 
-void find_bull(t_shell *shell, int i);
+void	find_bull(t_shell *shell, char **cmd, int i);
 
 /* exec */
 
 void 	shell_execve(char *e_cmd, char **env, t_shell *shell);
 void 	execute_pipeline(t_shell *shell, int i, int j, int input_fd);
+
+void 	redir(t_shell *shell, char **cmds);
 
 /* history */
 

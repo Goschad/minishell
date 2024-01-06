@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   launch_shell.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:22:33 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/01/04 15:50:58 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/01/06 10:23:25 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,13 @@ void launch(t_shell *shell)
 	cpy = NULL;
 	while (shell->mini == 1)
 	{
+		// token en debut error
 		readed = readline("minishell > ");
 		remake(&readed, &reboot_line);
 		if (readed && ft_strcmp("", readed))
 			history(readed);
 		remakepp(&readed);
+		printf("%s\n", readed);
 		if (check_quote(readed))
 			parse(readed, shell);
 		free(readed);

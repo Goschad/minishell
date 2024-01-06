@@ -6,16 +6,15 @@ Marwen :
 - convert variable d'env : false
 - quote : true (juste la fonction qui enleve les quotes mais elle est pas encore utilisée)
 - pipe : true
-- redirection : false (c du caca)
+- redirection : false (c du caca) (parse les < > <> << >>)
 - ^D quitte pas + ^C quitte + \n : false
 
 Julien :
 
-- echo : WIP
-- env : True
-- exit : WIP
+- echo : false
+- exit : false
 - cd : false
-- pwd : True
+- pwd : false
 - export : false
 - unset : false
 - signal ^D + ^C + ^\ : false
