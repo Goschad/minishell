@@ -19,6 +19,7 @@ SRCS = 	main.c \
 		utils/ft_split.c \
 		utils/cut_cmd_utils.c \
 		utils/env_utils.c \
+		utils/errors.c \
 		utils/status.c \
 		launch/launch_shell.c \
 		history/history.c \
