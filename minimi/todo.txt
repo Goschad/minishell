@@ -14,9 +14,9 @@ Julien :
 - echo : true
 - env : true
 - exit : true
-- cd : WIP
+- cd : true
 - pwd : true
-- export : false
+- export : WIP
 - unset : false
 - signal ^D + ^C + ^\ : false
 
