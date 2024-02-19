@@ -124,6 +124,8 @@ int		is_flag_valid(char *str);
 int		is_d(int n);
 int		str_is_num(char *str);
 void	is_neg(int n, t_shell *shell);
+int		ft_isalpha(int c);
+int		ft_isalnum(int c);
 
 void	init_shell(t_shell *shell);
 

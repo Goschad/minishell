@@ -3,22 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   basic_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:31:05 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/01/30 16:50:51 by julien           ###   ########.fr       */
+/*   Updated: 2024/02/19 15:52:43 by jguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-
-// a supprimer
-
-void	print_tab(char **tab)
-{
-	for (int i = 0; tab[i]; i++)
-		printf("%s\n", tab[i]);
-}
 
 int	basic(int argc, char **env, t_shell *shell)
 {
@@ -74,4 +66,11 @@ void	is_neg(int n, t_shell *shell)
 	shell->mini = 0;
 	ft_putstr_fd("exit\n", 1);
 	return ;
+}
+
+int	ft_isalpha(int c)
+{
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+		return (1);
+	return (0);
 }
