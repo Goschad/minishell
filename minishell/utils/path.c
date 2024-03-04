@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_struct.c                                      :+:      :+:    :+:   */
+/*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 16:56:55 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/02/14 14:08:32 by mbouaza          ###   ########.fr       */
+/*   Created: 2024/02/14 12:27:32 by mbouaza           #+#    #+#             */
+/*   Updated: 2024/02/14 14:40:04 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void init_shell(t_shell *shell)
+char *actual_path(void)
 {
-	shell->all = NULL;
-	shell->cmd = NULL;
-	shell->p_cmd = NULL;
-	shell->env = NULL;
-	shell->forked_cmd = 0;
-	shell->mini = 1;
-	shell->argc = 0;
-	shell->pipl.n_steps = 0;
-	shell->status = 0;
-	shell->redir = 0;
+    int i;
+    char *path;
+    char *actual;
+
+    actual = NULL;
+    path = NULL;
+    path = getcwd(path, 0);
+    i = ft_strlen(path);
+    while (i > 0 && path[i] != '/')
+        i--;
+    actual = ft_substr(path, i + 1, ft_strlen(path) - i);
+    free(path);
+    path = ft_join(actual, " > ");
+    return (free(actual), path);
 }

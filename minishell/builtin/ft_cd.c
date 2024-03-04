@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/30 11:17:53 by jguerin           #+#    #+#             */
-/*   Updated: 2024/01/10 10:11:33 by jguerin          ###   ########.fr       */
+/*   Created: 2024/02/05 09:38:07 by jguerin           #+#    #+#             */
+/*   Updated: 2024/02/14 14:36:01 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	pwd(void)
+int	ft_cd(char **argv, t_shell *shell)
 {
-	char	*path;
+	int i = 1;
+	int j = 0;
+	char *path;
 
-	path = NULL;
-	path = getcwd(path, 0);
-	printf("%s\n", path);
-	free(path);
+	if (shell->argc > 2)
+	{
+		ft_putstr_fd(argv[i], 2);
+		ft_putstr_fd(": Too many arguments\n", 2);
+		return (1);
+	}
+	else if (argv[i][j] == '~')
+	{
+		path = ft_getenv("HOME", shell->env);
+		chdir(path);
+	}
 }

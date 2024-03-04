@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   basic_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
+/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:51:05 by mbouaza           #+#    #+#             */
-/*   Updated: 2023/11/13 23:55:27 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/01/25 17:32:31 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,23 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	}
 	str[j] = '\0';
 	return (str);
+}
+int	ft_atoi(char *str)
+{
+	int i = 0;
+	int result = 0;
+	int sign = 1;
+
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '-')
+		sign *= -1;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		result = result * 10 + str[i] - '0';
+		i++;
+	}
+	return (sign * result);
 }

@@ -1,23 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/30 11:17:53 by jguerin           #+#    #+#             */
-/*   Updated: 2024/01/10 10:11:33 by jguerin          ###   ########.fr       */
+/*   Created: 2024/02/15 12:42:54 by mbouaza           #+#    #+#             */
+/*   Updated: 2024/02/15 12:43:17 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	pwd(void)
-{
-	char	*path;
-
-	path = NULL;
-	path = getcwd(path, 0);
-	printf("%s\n", path);
-	free(path);
-}

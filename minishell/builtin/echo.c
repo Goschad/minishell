@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 15:26:55 by jguerin           #+#    #+#             */
-/*   Updated: 2024/01/03 15:47:27 by jguerin          ###   ########.fr       */
+/*   Updated: 2024/01/30 14:16:29 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int	nb_arg(char *arg[])
+int	nb_arg(char **arg)
 {
 	int	size;
 
@@ -22,7 +22,20 @@ int	nb_arg(char *arg[])
 	return (size);
 }
 
-int	echo(char *args[])
+int	is_flag_valid(char *str)
+{
+	if (*str != '-')
+		return (1);
+	str++;
+	while (*str == 'n')
+		str++;
+	if (*str == '\0')
+		return (0);
+	else
+		return (1);
+}
+
+int	echo(char **args)
 {
 	int	i;
 	int	n_flag;
@@ -31,7 +44,7 @@ int	echo(char *args[])
 	n_flag = 0;
 	if (nb_arg(args) > 1)
 	{
-		while (args[i] && ft_strcmp(args[i], "-n") == 0)
+		while (args[i] && is_flag_valid(args[i]) == 0)
 		{
 			n_flag = 1;
 			i++;

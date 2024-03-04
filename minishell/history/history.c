@@ -6,22 +6,20 @@
 /*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:35:13 by mbouaza           #+#    #+#             */
-/*   Updated: 2023/11/15 23:31:08 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/02/15 11:51:44 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-static void rebuild(int *fd)
+static int rebuild(int fd)
 {
-	char **rm;
-
 	ft_putstr_fd("History file error 🤨 ...\n", 2);
 	ft_putstr_fd("re-build history file 😴 ...\n", 1);
 	unlink("./history/.shellHistory");
-	close(*fd);
-	*fd = open("./history/.shellHistory", O_CREAT | O_RDWR | O_APPEND, 0777);
+	fd = open("./history/.shellHistory", O_CREAT | O_WRONLY | O_APPEND, 0777);
 	ft_putstr_fd("re-builded file 🥳 yeah 🎉\n", 1);
+	return (fd);
 }
 
 static void no_newline(char *readed)
@@ -48,6 +46,7 @@ static void update_history(int fd)
 	line = get_next_line(fd);
 	while (line)
 	{
+		printf("test");
 		no_newline(line);
 		add_history(line);
 		free(line);
@@ -59,8 +58,10 @@ void make_history(t_shell *shell)
 {
 	int fd;
 
+	fd = open("./history/.shellHistory", O_WRONLY | O_APPEND, 0777);
+	printf("%d\n", fd);
 	if (fd < 0)
-		rebuild(&fd);
+		fd = rebuild(fd);
 	update_history(fd);
 	close(fd);
 }
@@ -69,7 +70,7 @@ void history(char *readed)
 {
 	int fd;
 	
-	fd = open("./history/.shellHistory", O_WRONLY | O_APPEND);
+	fd = open("./history/.shellHistory", O_WRONLY | O_APPEND, 0777);
 	ft_putstr_fd(readed, fd);
 	ft_putstr_fd("\n", fd);
 	add_history(readed);
