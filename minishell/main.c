@@ -6,7 +6,7 @@
 /*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:57:04 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/02/14 14:00:21 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/03/05 12:53:47 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int main(int argc, char **argv, char **env)
 		return (ft_putstr_fd("Malloc error\n", 2), 0);
 	else if (!basic(argc, env, shell))
 		return (0);
+	build_signal();
 	make_history(shell);
 	launch(shell);
 	status = shell->status;

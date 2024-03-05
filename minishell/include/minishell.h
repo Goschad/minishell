@@ -9,6 +9,7 @@
 # include <unistd.h>
 # include <dirent.h>
 # include <errno.h>
+#include <signal.h>
 # include <sys/stat.h>
 # include <sys/types.h>
 # include <sys/wait.h>
@@ -142,5 +143,9 @@ void	global_free(t_shell *shell);
 char	*ft_getenv(char *str, char **env);
 
 void	set_status(int set, t_shell *shell);
+
+/* signal */
+
+void 	build_signal(void);
 
 #endif
