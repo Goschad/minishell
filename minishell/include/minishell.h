@@ -34,6 +34,7 @@ struct shell
 	int		redir;
 	int		argc;
 	int 	forked_cmd;
+	char	*path;
 	char	**all;
 	char	**p_cmd;
 	char	**cmd;
@@ -117,6 +118,7 @@ int		quotes_cmd_size(char *line);
 
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *str, int fd);
+void	put_error(char *exe, char *file, int err, char *error);
 
 char	**ft_split(char const *s, char c);
 

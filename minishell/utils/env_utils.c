@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 22:53:47 by mbouaza           #+#    #+#             */
-/*   Updated: 2023/12/22 05:35:04 by marvin           ###   ########.fr       */
+/*   Updated: 2024/03/02 12:42:26 by jguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,31 @@ char *ft_getenv(char *str, char **env)
 		j = 0;
 	}
 	return (NULL);
+}
+
+void	sort_env(char **tab, int env_len)
+{
+	int		i;
+	int		ordered;
+	char	*tmp;
+
+	ordered = 0;
+	while(tab && ordered == 0)
+	{
+		ordered = 1;
+		i = 0;
+		while (i < env_len -1)
+		{
+			if(ft_strcmp(tab[i], tab[i + 1]) > 0)
+			{
+				tmp = tab[i];
+				tab[i] = tab[i + 1];
+				tab[i + 1] = tmp;
+				ordered = 0;
+			}
+			printf("%s\n", tmp);
+			i++;
+		}
+		env_len--;
+	}
 }
