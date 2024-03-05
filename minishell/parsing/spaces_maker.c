@@ -6,7 +6,7 @@
 /*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 02:22:07 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/02/14 15:06:34 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/03/05 20:29:10 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,30 +16,11 @@
 
 static int spaced_verif(char *readed, int i)
 {
-	if (readed[i] == '|' && readed[i + 1] != '|')
-		return (1);
-	else if (readed[i + 2] && readed[i] == '<' && readed[i + 1] == '<' && readed[i + 2] != '<')
-		return (1);
-	else if (readed[i + 2] && readed[i] == '>' && readed[i + 1] == '>' && readed[i + 2] != '>')
-		return (1);
-	else if (readed[i + 2] && readed[i] == '&' && readed[i + 1] == '&' && readed[i + 2] != '&')
-		return (1);
-	if (readed[i - 1] && readed[i - 1] == '|' && readed[i] != '|')
-		return (1);
-	else if (readed[i - 2] && readed[i] != '<' && readed[i - 1] == '<' && readed[i - 2] == '<')
-		return (1);
-	else if (readed[i - 2] && readed[i] != '>' && readed[i - 1] == '>' && readed[i - 2] == '>')
-		return (1);
-	else if (readed[i + 2] && readed[i] == '<' && readed[i + 1] == '<' && readed[i + 2] != '<')
-		return (1);
-	else if (readed[i + 2] && readed[i] == '>' && readed[i + 1] == '>' && readed[i + 2] != '>')
-		return (1);
-	else if (readed[i - 2] && readed[i] != '<' && readed[i - 1] == '<' && readed[i - 2] == '<')
-		return (1);
-	else if (readed[i - 2] && readed[i] != '>' && readed[i - 1] == '>' && readed[i - 2] == '>')
-		return (1);
-	else if (readed[i - 2] && readed[i] != '&' && readed[i - 1] == '&' && readed[i - 2] == '&')
-		return (1);
+	int i = 0;
+	int j = 1;
+	int x = 2;
+
+	if (readed[x])
 	return (0);
 }
 

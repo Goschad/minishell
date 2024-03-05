@@ -9,7 +9,7 @@
 # include <unistd.h>
 # include <dirent.h>
 # include <errno.h>
-#include <signal.h>
+# include <signal.h>
 # include <sys/stat.h>
 # include <sys/types.h>
 # include <sys/wait.h>
@@ -19,6 +19,9 @@
 # include <string.h>
 
 // --- [ define ] --- //
+
+# define TRUE 1
+# define FALSE -1
 
 // --- [ structure ] --- //
 
@@ -86,8 +89,6 @@ void	parse(char *readed, t_shell *shell);
 void	change_nl(char *readed);
 char	*reboot_line(char *readed);
 
-char	*wildcard(char *readed);
-
 char	*quoted_line(char *line);
 int		check_quote(char *s);
 
@@ -149,5 +150,10 @@ void	set_status(int set, t_shell *shell);
 /* signal */
 
 void 	build_signal(void);
+
+/* bonus */
+
+char **get_dir(char *dir);
+char **launch_wildcard(char **readed);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:38:07 by jguerin           #+#    #+#             */
-/*   Updated: 2024/02/17 10:56:04 by jguerin          ###   ########.fr       */
+/*   Updated: 2024/03/05 16:23:06 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	ft_cd(char **argv, t_shell *shell)
 
 	i = 1;
 	j = 0;
+	error = 0;
 	if (shell->argc == 1)
 		cd_home(shell);
 	else if (shell->argc > 2)
@@ -40,12 +41,13 @@ int	ft_cd(char **argv, t_shell *shell)
 	{
 		shell->path = ft_getenv("HOME", shell->env);
 		if (chdir(shell->path) != 0)
-			return (1);
+			return (free(shell->path), 1);
 	}
 	else if (argv[i])
 	{
-		shell->path = argv[i];
+		shell->path = ft_strdup(argv[i]);
 		error = chdir(shell->path);
+		free(shell->path);
 		if (error)
 			put_error("minishell: cd", argv[i], 0, "No such file or directory");
 	}

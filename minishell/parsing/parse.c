@@ -6,7 +6,7 @@
 /*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 04:09:26 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/02/15 11:22:14 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/03/05 17:07:43 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,8 @@ void parse(char *readed, t_shell *shell)
 	shell->all = cut_cmd(readed);
 	shell->pipl.n_steps = count_pipe(shell->all) + 1;
 	shell->cmd = make_cmds(shell->all, shell->pipl.n_steps, 0, 0);
-	execute_pipeline(shell, -1, -1, 0); // utiliser pour les pipe
+	print_tab(shell->cmd);
+	execute_pipeline(shell, -1, -1, 0);
 	tab_free(shell->cmd);
 	tab_free(shell->all);
 }

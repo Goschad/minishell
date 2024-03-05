@@ -70,11 +70,13 @@ void execute_pipeline(t_shell *shell, int i, int j, int input_fd)
             tab_free(shell->p_cmd);
             shell->p_cmd = NULL;
         }
+        else
+            tab_free(shell->p_cmd);
         if (i != 0)
             close(input_fd);
         if (i != shell->pipl.n_steps - 1)
             ((void)0, close(pipefd[1]), input_fd = pipefd[0]);
     }
-    while (++j <= shell->pipl.n_steps - 1) 
+    while (++j <= shell->pipl.n_steps - 1)
         wait(NULL);
 }
