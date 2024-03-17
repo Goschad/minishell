@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 10:47:08 by jguerin           #+#    #+#             */
-/*   Updated: 2024/01/31 14:45:40 by jguerin          ###   ########.fr       */
+/*   Updated: 2024/03/15 13:43:45 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,26 +45,12 @@ void	exit_value(int n, char *str, t_shell *shell)
 
 int	ex(int n, int *test, char *str, t_shell *shell)
 {
-	if (n == 1)
+	if (n >= 0 && n < 5)
 	{
 		print_exit();
-		exit_value(1, str, shell);
-	}
-	else if (n == 2)
-	{
-		print_exit();
-		exit_value(2, str, shell);
-	}
-	else if (n == 3)
-	{
-		print_exit();
-		exit_value(3, str, shell);
-		*test = 0;
-	}
-	else if (n == 4)
-	{
-		print_exit();
-		exit_value(4, str, shell);
+		exit_value(n, str, shell);
+		if (n == 3)
+			*test = 0;
 	}
 	return (1);
 }
@@ -81,8 +67,7 @@ void	ft_exit(char **av, t_shell *shell, t_exit xt)
 			if (str_is_num(av[xt.i]) == 0)
 			{
 				xt.j = ft_atoi(av[xt.i]) * -1;
-				is_neg(xt.j, shell);
-				return ;
+				return (is_neg(xt.j, shell));
 			}
 			if (!is_d(av[xt.i][xt.j]) && ex(1, &xt.k, av[xt.i], shell) == 1)
 				return ;

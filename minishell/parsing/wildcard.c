@@ -6,7 +6,7 @@
 /*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 05:54:39 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/03/05 21:47:52 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/03/17 06:40:46 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,18 @@ static int size_of_dir(char *dir)
 	}
 	closedir(directory);
 	return (i);
+}
+
+int is_dir(char *dir)
+{
+	struct stat stat_info;
+
+	if (lstat(dir, &stat_info) == 0)
+	{
+		if (S_ISDIR(stat_info.st_mode))
+			return (TRUE);
+	}
+	return (FALSE);
 }
 
 char **get_dir(char *dir)

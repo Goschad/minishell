@@ -6,21 +6,50 @@
 /*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 02:22:07 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/03/05 20:29:10 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/03/15 17:29:12 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-// norme
+// | < << > >>
 
-static int spaced_verif(char *readed, int i)
+static int spaced_verif(char *readed, int i, int len)
 {
-	int i = 0;
-	int j = 1;
-	int x = 2;
+	if (!(i > 0 && i < len - 1))
+		return (0);
 
-	if (readed[x])
+	/* '|' */
+		
+	if (readed[i] == '|' && readed[i + 1] != ' ')
+		return (1);
+	if (readed[i] != ' ' && readed[i] != '|' && readed[i - 1] == '|')
+		return (1);
+
+	/* '>>' */
+
+	if (i < len - 2 && readed[i] != ' ' && readed[i - 1] == '>' && readed[i - 2] == '>')
+		return (1);
+
+	/* '<<' */
+
+	if (i < len - 2 && readed[i] != ' ' && readed[i - 1] == '<' && readed[i - 2] == '<')
+		return (1);
+
+	/* '>' */
+
+	if (readed[i] == '>' && readed[i - 1] != ' '&& readed[i - 1] != '>')
+		return (1);
+	if (readed[i] != ' ' && readed[i] != '>' && readed[i - 1] == '>' && readed[i + 1] != '>')
+		return (1);
+
+	/* '<' */
+
+	if (readed[i] == '<' && readed[i - 1] != ' ' && readed[i - 1] != '<')
+		return (1);
+	if (readed[i] != ' ' && readed[i] != '<' && readed[i - 1] == '<' && readed[i + 1] != '<')
+		return (1);
+
 	return (0);
 }
 
@@ -33,7 +62,7 @@ static int rebuild_space_len(char *readed, int i)
 	in_q = 0;
 	while (readed[i])
 	{
-		if (readed[j] && spaced_verif(readed, i))
+		if (readed[j] && spaced_verif(readed, i, ft_strlen(readed)))
 				((void)0, i++, j++);
 		else if (update(readed[i], &in_q))
 		{
@@ -43,7 +72,7 @@ static int rebuild_space_len(char *readed, int i)
 			i++;
 		}
 		else
-				i++;
+			i++;
 	}
 	return (i + j);
 }
@@ -55,11 +84,11 @@ char *rebuild_space_line(char *readed, int j, int in_q)
 	int i;
 	char *new;
 
-	new = malloc(sizeof(char) * (rebuild_space_len(readed, 0) + 1));
 	i = 0;
+	new = malloc(sizeof(char) * (rebuild_space_len(readed, 0) + 1));
 	while (readed[j])
 	{
-		if (spaced_verif(readed, j))
+		if (spaced_verif(readed, j, ft_strlen(readed)))
 		{
 			new[i++] = ' ';
 			new[i++] = readed[j++];

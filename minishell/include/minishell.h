@@ -15,6 +15,7 @@
 # include <sys/wait.h>
 # include <readline/history.h>
 # include <readline/readline.h>
+# include <fcntl.h>
 # include "../get_next_line/get_next_line.h"
 # include <string.h>
 
@@ -130,12 +131,13 @@ int		is_d(int n);
 int		str_is_num(char *str);
 void	is_neg(int n, t_shell *shell);
 
-void		init_shell(t_shell *shell);
+void	init_shell(t_shell *shell);
 
 char	*ft_strdup(char *s1);
 char	**ft_tabdup(char **tab);
 
 int		ft_strcmp(char *s1, char *s2);
+char 	*make_it_one(char **tab);
 char	*ft_join(char *s1, char *s2);
 char	*ft_substr(char *s, unsigned int start, size_t len);
 int		ft_atoi(char *str);
@@ -153,7 +155,18 @@ void 	build_signal(void);
 
 /* bonus */
 
-char **get_dir(char *dir);
-char **launch_wildcard(char **readed);
+char 	**wildcard(char **readed);
+
+char	**get_dir(char *dir);
+
+int first(char *str);
+int seconde(char *str);
+int third(char *str);
+
+char 	*first_type(char *line, char **dir, int type);
+
+char 	*seconde_type(char *line, char **dir);
+
+char 	*third_type(char *line, char **dir);
 
 #endif

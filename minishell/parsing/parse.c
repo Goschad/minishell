@@ -6,7 +6,7 @@
 /*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 04:09:26 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/03/05 17:07:43 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/03/17 09:23:57 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,13 +94,17 @@ static char **make_cmds(char **av, int pipeline, int i, int j)
 void parse(char *readed, t_shell *shell)
 {
 	int i;
+	char **cpy;
 
 	i = 0;
+	cpy = NULL;
 	change_nl(readed);
 	shell->all = cut_cmd(readed);
+	cpy = ft_tabdup(shell->all);
+	tab_free(shell->all);
+	shell->all = wildcard(cpy);
 	shell->pipl.n_steps = count_pipe(shell->all) + 1;
 	shell->cmd = make_cmds(shell->all, shell->pipl.n_steps, 0, 0);
-	print_tab(shell->cmd);
 	execute_pipeline(shell, -1, -1, 0);
 	tab_free(shell->cmd);
 	tab_free(shell->all);

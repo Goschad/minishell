@@ -6,7 +6,7 @@
 /*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:35:13 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/02/15 11:51:44 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/03/15 15:34:05 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,11 @@ static void no_newline(char *readed)
 static void update_history(int fd)
 {
 	char *line;
-
+	
 	line = NULL;
 	line = get_next_line(fd);
 	while (line)
 	{
-		printf("test");
 		no_newline(line);
 		add_history(line);
 		free(line);
@@ -59,9 +58,10 @@ void make_history(t_shell *shell)
 	int fd;
 
 	fd = open("./history/.shellHistory", O_WRONLY | O_APPEND, 0777);
-	printf("%d\n", fd);
 	if (fd < 0)
 		fd = rebuild(fd);
+	close(fd);
+	fd = open("./history/.shellHistory", O_RDONLY);
 	update_history(fd);
 	close(fd);
 }

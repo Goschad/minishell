@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   basic_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:51:05 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/01/25 17:32:31 by julien           ###   ########.fr       */
+/*   Updated: 2024/03/17 07:47:23 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,36 @@ char	*ft_join(char *s1, char *s2)
 		newstr[len++] = s2[len2++];
 	newstr[len] = '\0';
 	return (newstr);
+}
+
+char *make_it_one(char **tab)
+{
+	int i;
+	int j;
+	char *str;
+	char *cpy;
+
+	((void)0, j = 0, i = 0, str = NULL, cpy = NULL);
+	if (tab[i + 1])
+		str = ft_join(tab[i++], " ");
+	else if (tab[i])
+		str = ft_strdup(tab[i++]);
+	while (tab[i])
+	{
+		cpy = ft_join(str, tab[i]);
+		free(str);
+		if (!tab[i])
+			return (cpy);
+		else if (tab[i + 1])
+		{
+			str = ft_join(cpy, " ");
+		}
+		else if (tab[i])
+			str = ft_strdup(cpy);
+		free(cpy);
+		i++;
+	}
+	return (str);
 }
 
 char	*ft_substr(char *s, unsigned int start, size_t len)
@@ -92,3 +122,5 @@ int	ft_atoi(char *str)
 	}
 	return (sign * result);
 }
+
+

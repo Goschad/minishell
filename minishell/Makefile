@@ -36,6 +36,11 @@ SRCS = 	main.c \
 		exec/execve.c \
 		exec/execute_pipe.c \
 		exec/redir.c \
+		bonus/find_type.c \
+		bonus/wildcard.c \
+		bonus/first_type.c \
+		bonus/seconde_type.c \
+		bonus/third_type.c \
 		get_next_line/get_next_line.c \
 		get_next_line/get_next_line_utils.c
 
@@ -58,7 +63,7 @@ $(NAME): $(OBJS)
 	@sleep 0.1;
 	@/bin/echo -n ">"
 	@/bin/echo " success download 🥳"
-	@/bin/echo "minishell made by mbouaza && jguerin"
+	@/bin/echo "minishell made by jguerin && mbouaza"
 
 clear:
 	@rm -rf history/.shellHistory
