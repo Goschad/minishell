@@ -3,31 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:34:39 by mbouaza           #+#    #+#             */
-/*   Updated: 2023/11/14 03:31:10 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/04/23 04:40:38 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-
-static int update_sd(char c, int *in_q, int *qs, int *qd)
-{
-	if (c == '\'' && *in_q != 2)
-	{
-		*in_q = 1 - (1 * (*in_q == 1));
-		*qs += 1;
-		return (1);
-	}
-	else if (c == '\"' && *in_q != 1)
-	{
-		*in_q = 2 - (2 * (*in_q == 2));
-		*qd += 1;
-		return (1);
-	}
-	return (0);
-}
 
 static int quoted_size(char *line)
 {
@@ -45,6 +28,23 @@ static int quoted_size(char *line)
 		i++;
 	}
 	return (len);
+}
+
+int update_sd(char c, int *in_q, int *qs, int *qd)
+{
+	if (c == '\'' && *in_q != 2)
+	{
+		*in_q = 1 - (1 * (*in_q == 1));
+		*qs += 1;
+		return (1);
+	}
+	else if (c == '\"' && *in_q != 1)
+	{
+		*in_q = 2 - (2 * (*in_q == 2));
+		*qd += 1;
+		return (1);
+	}
+	return (0);
 }
 
 int	update(char c, int *in_q)

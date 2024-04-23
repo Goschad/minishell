@@ -12,7 +12,18 @@
 
 #include "../include/minishell.h"
 
-void redir(t_shell *shell, char **cmds)
+// -bash: test.txt: Permission denied
+
+// check if exist and can access
+
+static permission_set(char *file_name)
 {
-    print_tab(cmds);
+
+}
+
+void redir(char *file_name, int v)
+{
+    int fd;
+
+    fd = open(file_name, O_WRONLY | O_CREAT | O_TRUNC)
 }

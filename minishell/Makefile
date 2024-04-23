@@ -18,7 +18,9 @@ SRCS = 	main.c \
 		utils/basic_utils.c \
 		utils/free.c \
 		utils/ft_split.c \
+		utils/ft_itoa.c \
 		utils/cut_cmd_utils.c \
+		utils/conversion_utils.c \
 		utils/env_utils.c \
 		utils/status.c \
 		utils/errors.c \
@@ -32,6 +34,7 @@ SRCS = 	main.c \
 		parsing/remake_line.c \
 		parsing/spaces_maker.c \
 		parsing/cut_cmd.c \
+		parsing/conversion.c \
 		signal/signal.c \
 		exec/execve.c \
 		exec/execute_pipe.c \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 04:09:26 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/03/17 09:23:57 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/04/23 05:08:17 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,11 +95,18 @@ void parse(char *readed, t_shell *shell)
 {
 	int i;
 	char **cpy;
+	char *cpyy;
 
 	i = 0;
 	cpy = NULL;
-	change_nl(readed);
-	shell->all = cut_cmd(readed);
+	cpyy = ft_strdup(readed);
+	cpyy = env_conversion(cpyy, shell->env, -1, shell);
+	
+	printf("%s\n", cpyy);
+	
+	change_nl(cpyy);
+	
+	shell->all = cut_cmd(cpyy);
 	cpy = ft_tabdup(shell->all);
 	tab_free(shell->all);
 	shell->all = wildcard(cpy);

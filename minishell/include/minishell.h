@@ -84,6 +84,7 @@ void	launch(t_shell *shell);
 int		tokenizer(char *token);
 
 int		update(char c, int *in_q);
+int		update_sd(char c, int *in_q, int *qs, int *qd);
 
 void	parse(char *readed, t_shell *shell);
 
@@ -100,12 +101,14 @@ char	**cut_cmd(char *line);
 void	find_bull(t_shell *shell, char **cmd, int i);
 int		isnt_bull(t_shell *shell, char **cmd, int i);
 
+char	*env_conversion(char *s, char **env, int i, t_shell *mini);
+
 /* exec */
 
 void	shell_execve(char *e_cmd, char **env, t_shell *shell);
 void	execute_pipeline(t_shell *shell, int i, int j, int input_fd);
 
-void	redir(t_shell *shell, char **cmds);
+void	redir(void);
 
 /* history */
 
@@ -123,6 +126,8 @@ void	ft_putstr_fd(char *str, int fd);
 void	put_error(char *exe, char *file, int err, char *error);
 
 char	**ft_split(char const *s, char c);
+
+char 	*ft_itoa(int nbr);
 
 int		basic(int argc, char **env, t_shell *shell);
 int		nb_arg(char **arg);
@@ -148,6 +153,10 @@ void	global_free(t_shell *shell);
 char	*ft_getenv(char *str, char **env);
 
 void	set_status(int set, t_shell *shell);
+
+int		check_env(char *s, char **env, int i);
+int		var_c(char *s, int i);
+int		simp_char(char c, char *reject);
 
 /* signal */
 
