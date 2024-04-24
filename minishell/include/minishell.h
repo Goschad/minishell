@@ -19,10 +19,15 @@
 # include "../get_next_line/get_next_line.h"
 # include <string.h>
 
-// --- [ define ] --- //
+// --- [ define bool ] --- //
 
 # define TRUE 1
 # define FALSE -1
+
+// --- [ define FLAG ] --- //
+
+# define PERM 3
+# define HERE 2
 
 // --- [ structure ] --- //
 
