@@ -1,12 +1,19 @@
 Marwen :
 
-- Tokenizer : false
-- historique : false =>
+- Tokenizer : bof
+- historique : true
 - parsing : true
 - convert variable d'env : false
 - quote : true (juste la fonction qui enleve les quotes mais elle est pas encore utilisée)
 - pipe : true
-- redirection : false (c du caca) (parse les < > <> << >>)
+- redirection : true (le principe) (parse les < > <> << >>)
+  {
+    << : heredoc>
+
+    PARSING :
+        >> : O_APPEND
+        > : O_TRUNC
+  }
 
 Julien :
 
@@ -18,8 +25,6 @@ Julien :
 - export : false
 - unset : false
 - signal ^C + ^\ : false
-
-
 
 - wildcard : false (la fonction qui envoie la liste des fichier du repertoire courant est prete tu as juste a check si le (exemple) "*.c" fini par .c)
 

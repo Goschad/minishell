@@ -65,7 +65,7 @@ void execute_pipeline(t_shell *shell, int i, int j, int input_fd)
         if (pid == 0)
         {
             pipeline_cut(i, &input_fd, pipefd, shell->pipl.n_steps - 1);
-            // redir(shell, shell->p_cmd);
+            // redir("test.txt", 1); // marche bien juste il faut parser maintenant + marchain avec le mdp etc << coucou > l
             find_bull(shell, shell->p_cmd, i);
             tab_free(shell->p_cmd);
             shell->p_cmd = NULL;

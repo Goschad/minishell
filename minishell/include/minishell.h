@@ -29,6 +29,16 @@
 # define PERM 3
 # define HERE 2
 
+// --- [ define Token ] --- //
+
+# define UNKNOWN -1
+# define REDIR_LEFT 1
+# define REDIR_RIGHT 2
+# define REDIR_D_RIGHT 3
+# define REDIR_D_LEFT 4
+# define FILE 5
+# define HEREDOC_PASS 6
+
 // --- [ structure ] --- //
 
 struct Pipe
@@ -78,15 +88,11 @@ void	ft_exit(char **argv, t_shell *shell, t_exit xt);
 
 int		ft_cd(char **argv, t_shell *shell);
 
-//int		ft_cd(char **argv, t_shell *shell);
-
 /* launch */
 
 void	launch(t_shell *shell);
 
 /* parsing */
-
-int		tokenizer(char *token);
 
 int		update(char c, int *in_q);
 int		update_sd(char c, int *in_q, int *qs, int *qd);
@@ -113,7 +119,10 @@ char	*env_conversion(char *s, char **env, int i, t_shell *mini);
 void	shell_execve(char *e_cmd, char **env, t_shell *shell);
 void	execute_pipeline(t_shell *shell, int i, int j, int input_fd);
 
-void	redir(void);
+void 	redir(char *file_name, int redir_type);
+void tokenizer(char **test);
+
+void heredoc(char *pass);
 
 /* history */
 

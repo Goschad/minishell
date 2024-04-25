@@ -6,7 +6,7 @@
 /*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 02:22:07 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/03/15 17:29:12 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/04/25 08:17:05 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ static int spaced_verif(char *readed, int i, int len)
 		return (1);
 	if (readed[i] != ' ' && readed[i] != '<' && readed[i - 1] == '<' && readed[i + 1] != '<')
 		return (1);
-
 	return (0);
 }
 

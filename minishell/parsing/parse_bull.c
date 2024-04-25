@@ -23,6 +23,7 @@ void	find_bull(t_shell *shell, char **cmd, int i)
 {
 	t_exit	xt;
 
+	tokenizer(cmd);
 	if (!ft_strcmp(cmd[0], "echo"))
 		echo(cmd);
 	else if (!ft_strcmp(cmd[0], "env"))

@@ -29,7 +29,6 @@ SRCS = 	main.c \
 		parsing/quotes.c \
 		parsing/parse_bull.c \
 		parsing/parse.c \
-		parsing/token.c \
 		parsing/wildcard.c \
 		parsing/remake_line.c \
 		parsing/spaces_maker.c \
@@ -39,6 +38,7 @@ SRCS = 	main.c \
 		exec/execve.c \
 		exec/execute_pipe.c \
 		exec/redir.c \
+		exec/heredoc.c \
 		bonus/find_type.c \
 		bonus/wildcard.c \
 		bonus/first_type.c \
