@@ -3,38 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   launch_shell.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:22:33 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/04/26 06:19:08 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/04/26 11:12:40 by jguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-static void remakepp(char **readed)
+static void	remakepp(char **readed)
 {
-	char *cpy;
-	
+	char	*cpy;
+
 	cpy = ft_strdup(*readed);
 	free(*readed);
 	*readed = rebuild_space_line(cpy, 0, 0);
 	free(cpy);
 }
 
-static void remake(char **readed, char *(*f)(char *))
+static void	remake(char **readed, char *(*f)(char *))
 {
-	char *cpy;
-	
+	char	*cpy;
+
 	cpy = ft_strdup(*readed);
 	free(*readed);
 	*readed = f(cpy);
 	free(cpy);
 }
 
-static int banned(char *readed)
+static int	banned(char *readed)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!ft_strcmp(readed, ""))
@@ -48,11 +48,11 @@ static int banned(char *readed)
 	return (1);
 }
 
-void launch(t_shell *shell)
+void	launch(t_shell *shell)
 {
-	char *readed;
-	char *cpy;
-	
+	char	*readed;
+	char	*cpy;
+
 	readed = NULL;
 	cpy = NULL;
 	while (shell->mini == 1)

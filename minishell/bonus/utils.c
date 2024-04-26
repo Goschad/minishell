@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 05:54:39 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/04/26 04:13:07 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/04/26 11:31:00 by jguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-static int size_of_dir(char *dir)
-{	
-	int i;
-	DIR *directory;
-	struct dirent *entry;
+static int	size_of_dir(char *dir)
+{
+	int				i;
+	DIR				*directory;
+	struct dirent	*entry;
 
 	i = 0;
 	directory = opendir(dir);
@@ -26,16 +26,16 @@ static int size_of_dir(char *dir)
 	{
 		entry = readdir(directory);
 		if (entry == NULL)
-			break;
+			break ;
 		i++;
 	}
 	closedir(directory);
 	return (i);
 }
 
-int is_dir(char *dir)
+int	is_dir(char *dir)
 {
-	struct stat stat_info;
+	struct stat	stat_info;
 
 	if (lstat(dir, &stat_info) == 0)
 	{
@@ -45,12 +45,12 @@ int is_dir(char *dir)
 	return (FALSE);
 }
 
-char **get_dir(char *dir)
+char	**get_dir(char *dir)
 {
-	struct dirent *entry;
-	DIR *directory;
-	char **ls;
-	int i;
+	struct dirent	*entry;
+	DIR				*directory;
+	char			**ls;
+	int				i;
 
 	i = size_of_dir(dir);
 	if (i == 0)
@@ -62,10 +62,10 @@ char **get_dir(char *dir)
 	directory = opendir(dir);
 	while (i < size_of_dir(dir))
 	{
-        entry = readdir(directory);
+		entry = readdir(directory);
 		ls[i++] = ft_strdup(entry->d_name);
-    }
+	}
 	ls[i] = NULL;
-    closedir(directory);
+	closedir(directory);
 	return (ls);
 }

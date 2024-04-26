@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   remake_line.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 05:45:11 by mbouaza           #+#    #+#             */
-/*   Updated: 2023/12/21 15:58:50 by marvin           ###   ########.fr       */
+/*   Updated: 2024/04/26 11:05:44 by jguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-static void change_whitespace(char *readed)
+static void	change_whitespace(char *readed)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (readed[i])
@@ -25,10 +25,10 @@ static void change_whitespace(char *readed)
 	}
 }
 
-static char *token_while(char *readed)
+static char	*token_while(char *readed)
 {
-	char *after;
-	char *tmp;
+	char	*after;
+	char	*tmp;
 
 	after = NULL;
 	tmp = NULL;
@@ -40,10 +40,10 @@ static char *token_while(char *readed)
 	return (tmp);
 }
 
-static int check_eol(char *readed)
+static int	check_eol(char *readed)
 {
-	int i;
-	
+	int	i;
+
 	i = ft_strlen(readed) - 1;
 	if (readed[i] == '\n')
 		readed[i--] = '\0';
@@ -59,9 +59,9 @@ static int check_eol(char *readed)
 	return (1);
 }
 
-void change_nl(char *readed)
+void	change_nl(char *readed)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (readed[i])
@@ -72,10 +72,10 @@ void change_nl(char *readed)
 	}
 }
 
-char *reboot_line(char *readed)
+char	*reboot_line(char *readed)
 {
-	char *cpy;
-	char *readd;
+	char	*cpy;
+	char	*readd;
 
 	cpy = NULL;
 	readd = NULL;

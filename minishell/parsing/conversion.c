@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   conversion.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:34:36 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/04/26 06:19:38 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/04/26 11:11:47 by jguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-static void despair(char **s1, char **s2, int *i)
+static void	despair(char **s1, char **s2, int *i)
 {
 	*i = -1;
 	if (*s1)
@@ -76,7 +76,7 @@ static char	*remplace_part(char *s, char *remplace, int start, int end)
 		i++;
 	}
 	j = i + end + 1;
-	while (i < start + (int) ft_strlen(remplace))
+	while (i < start + (int)ft_strlen(remplace))
 		new_str[i++] = remplace[x++];
 	while (s[j])
 		new_str[i++] = s[j++];
@@ -99,8 +99,8 @@ char	*env_conversion(char *s, char **env, int i, t_shell *mini)
 		if (s[i] == '$' && check_env(s, env, i) == 0 && s[i + 1] != '?'
 			&& var_c(s, i) == 0)
 			s = remplace_part(s, " ", i, ft_while(s, i));
-		else if (s[i] == '$' && (check_env(s, env, i) == 1
-				|| s[i + 1] == '?') && var_c(s, i) == 0)
+		else if (s[i] == '$' && (check_env(s, env, i) == 1 || s[i + 1] == '?')
+			&& var_c(s, i) == 0)
 		{
 			while (s[j + i + 1] && simp_char(s[j + i + 1], " $\'=\"") == 0)
 				j++;
