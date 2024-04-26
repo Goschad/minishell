@@ -26,8 +26,9 @@
 
 // --- [ define FLAG ] --- //
 
-# define PERM 3
 # define HERE 2
+# define PERM 3
+# define DIRECTORY 4
 
 // --- [ define Token ] --- //
 
@@ -54,6 +55,7 @@ struct shell
 	int		argc;
 	int 	forked_cmd;
 	char	*path;
+	char	**heredoc;
 	char	**all;
 	char	**p_cmd;
 	char	**cmd;
@@ -120,9 +122,11 @@ void	shell_execve(char *e_cmd, char **env, t_shell *shell);
 void	execute_pipeline(t_shell *shell, int i, int j, int input_fd);
 
 void 	redir(char *file_name, int redir_type);
-void tokenizer(char **test);
+void 	tokenizer(char **test);
 
-void heredoc(char *pass);
+void 	heredoc(char *pass, t_shell *shell);
+
+int if_dir(char *file_name);
 
 /* history */
 
@@ -181,6 +185,8 @@ void 	build_signal(void);
 char 	**wildcard(char **readed);
 
 char	**get_dir(char *dir);
+
+int 	is_dir(char *dir);
 
 int first(char *str);
 int seconde(char *str);

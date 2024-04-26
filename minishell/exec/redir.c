@@ -12,12 +12,6 @@
 
 #include "../include/minishell.h"
 
-// bash: test.txt: Permission denied
-
-// bash: directory_name/: Is a directory -> is_dir
-
-// check if exist and can access
-
 static int file_test(char *file_name)
 {
     int mod;
@@ -25,6 +19,16 @@ static int file_test(char *file_name)
     mod = access(file_name, F_OK);
     if (mod == -1)
         return (HERE);
+    else if (is_dir(file_name) == TRUE)
+    {
+        ft_putstr_fd("minishell: ", 2);
+        ft_putstr_fd(file_name, 2);
+        if (file_name[ft_strlen(file_name) - 1] == '/')
+            ft_putstr_fd(": Is a directory\n", 2);
+        else
+            ft_putstr_fd("/: Is a directory\n", 2);
+        return (DIRECTORY);
+    }
     mod = access(file_name, F_OK | W_OK);
     if (mod == -1)
     {
@@ -45,7 +49,7 @@ void redir(char *file_name, int redir_type)
     fd = 0;
     if (file_test(file_name) == HERE) // file doesn't exist, so i don't care about perm or v
         fd = open(file_name, O_WRONLY | O_CREAT | O_TRUNC);
-    else if (file_test(file_name) == PERM) // file exist but have inssufisance perm
+    else if (file_test(file_name) <= PERM) // file exist but have inssufisance perm
         return ;
     else
     {

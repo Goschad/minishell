@@ -6,7 +6,7 @@
 /*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 16:34:40 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/04/25 08:51:48 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/04/25 15:53:40 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,18 +66,74 @@ void tokenizer(char **test)
     printf("\n");
 }
 
+static int ft_sstrlen(char **t1)
+{
+    int i;
+
+    i = 0;
+    while (t1[i])
+        i++;
+    return (i);
+}
+
+static char **add_tab(char **copy, char *add, int t)
+{
+    int i;
+    char **new;
+
+    if (t == 0)
+        i = 0;
+    else
+        i = ft_sstrlen(copy);
+    new = malloc(sizeof(char *) * (i + 2));
+    if (!new)
+        return (NULL);
+    if (t == 0 && add)
+    {
+        new[0] = ft_strdup(add);
+        new[1] = NULL;
+        return (new);
+    }
+    i = 0;
+    while (copy[i])
+    {
+        new[i] = ft_strdup(copy[i]);
+        i++;
+    }
+    if (add == NULL)
+        new[i++] = ft_strdup(add);
+    new[i] = NULL;
+    return (new);
+}
 // askip c le debut
 
-void heredoc(char *pass)
+void heredoc(char *pass, t_shell *shell)
 {
+    int i;
 	char *line;
+    char **cpy;
 
+    cpy = NULL;
 	line = NULL;
+    i = 0;
 	while (1)
     {
         line = readline("> ");
         if (!ft_strcmp(line, pass))
-            return (free(line));
+            return (print_tab(shell->heredoc), free(line));
+        if (shell->heredoc == NULL)
+            shell->heredoc = add_tab(NULL, line, i);
+        else
+        {
+            cpy = add_tab(shell->heredoc, line, i);
+            print_tab(cpy);
+            tab_free(shell->heredoc);
+            shell->heredoc = NULL;
+            shell->heredoc = ft_tabdup(cpy);
+            tab_free(cpy);
+            cpy = NULL;
+        }
+        i++;
         free(line);
     }
 }

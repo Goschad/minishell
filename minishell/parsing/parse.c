@@ -6,7 +6,7 @@
 /*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 04:09:26 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/04/25 08:40:11 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/04/25 14:42:23 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ void parse(char *readed, t_shell *shell)
 	char *cpyy;
 
 	i = 0;
+	heredoc("test", shell);
 	cpy = NULL;
 	cpyy = ft_strdup(readed);
 	cpyy = env_conversion(cpyy, shell->env, -1, shell);

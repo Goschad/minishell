@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:11:54 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/01/05 12:09:48 by marvin           ###   ########.fr       */
+/*   Updated: 2024/04/25 14:07:55 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void global_free(t_shell *shell)
 {
 	if (shell->env)
 		tab_free(shell->env);
+	if (shell->heredoc)
+		free(shell->heredoc);
 	if (shell)
 		free(shell);
 }
