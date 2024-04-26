@@ -1,0 +1,33 @@
+Marwen :
+
+- Tokenizer : bof
+- historique : true
+- parsing : true
+- convert variable d'env : false
+- quote : true (juste la fonction qui enleve les quotes mais elle est pas encore utilisée)
+- pipe : true
+- redirection : true (le principe) (parse les < > <> << >>)
+  {
+    << : heredoc>
+
+    PARSING :
+        >> : O_APPEND
+        > : O_TRUNC
+  }
+
+Julien :
+
+- echo : true
+- env : true
+- exit : true
+- cd : WIP
+- pwd : true
+- export : false
+- unset : false
+- signal ^C + ^\ : false
+
+- wildcard : false (la fonction qui envoie la liste des fichier du repertoire courant est prete tu as juste a check si le (exemple) "*.c" fini par .c)
+
+pwd -> echo -> exit -> cd -> export / unset
+
+PS : 🎉 Bon courage 🎉 Force a toi 🎉 Stresse pas 🎉
