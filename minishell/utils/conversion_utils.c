@@ -12,7 +12,7 @@
 
 #include "../include/minishell.h"
 
-static char	*change_path(char *argv)
+static	char	*change_path(char *argv)
 {
 	int		i;
 	char	*new_argv;
@@ -32,7 +32,7 @@ static char	*change_path(char *argv)
 	return (new_argv);
 }
 
-static int	check_path(char *argv, char **env, int n)
+static	int	check_path(char *argv, char **env, int n)
 {
 	int			i;
 	int			j;
@@ -98,11 +98,11 @@ int	check_env(char *s, char **env, int i)
 	j = i;
 	path = NULL;
 	while (s[j] && simp_char(s[j + 1], " $\'=\"") == 0)
-				j++;
+		j++;
 	path = ft_substr(s, i + 1, j - i);
 	if (!path)
 		return (0);
-	if (check_path(path, env, 1) == 1)	
+	if (check_path(path, env, 1) == 1)
 		return (free(path), 1);
 	free(path);
 	return (0);

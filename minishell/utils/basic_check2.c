@@ -6,7 +6,7 @@
 /*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:52:02 by jguerin           #+#    #+#             */
-/*   Updated: 2024/02/26 13:56:06 by jguerin          ###   ########.fr       */
+/*   Updated: 2024/04/26 10:55:34 by jguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	ft_isalpha(int c)
 		return (1);
 	return (0);
 }
+
 int	ft_isdigit(int c)
 {
 	if (!(c >= '0' && c <= '9'))

@@ -6,7 +6,7 @@
 /*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 10:19:23 by jguerin           #+#    #+#             */
-/*   Updated: 2024/02/17 10:35:26 by jguerin          ###   ########.fr       */
+/*   Updated: 2024/04/26 10:30:36 by jguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,3 @@ void	put_error(char *exe, char *file, int err, char *error)
 		ft_putstr_fd(strerror(err), 2);
 	ft_putstr_fd("\n", 2);
 }
-
