@@ -53,6 +53,13 @@ struct Pipe
 	int n_steps;
 } typedef t_pipe;
 
+struct xt
+{
+	int		i;
+	int		j;
+	int		k;
+} typedef t_exit;
+
 struct shell
 {
 	int		mini;
@@ -67,15 +74,9 @@ struct shell
 	char	**cmd;
 	char	**env;
 	t_pipe  pipl;
+	t_exit	var;
 
 } typedef t_shell;
-
-struct xt
-{
-	int		i;
-	int		j;
-	int		k;
-} typedef t_exit;
 
 // --- [ function ] --- //
 

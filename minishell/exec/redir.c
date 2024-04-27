@@ -37,7 +37,7 @@ static int file_test(char *file_name)
         ft_putstr_fd(": Permission denie\n", 2);
         return (PERM);
     }
-    return (1);
+    return (HERE);
 }
 
 // redir_type = version '>' = 0 or '>>' = 1
@@ -47,27 +47,31 @@ void redir_right(char *file_name, int redir_type)
     int fd;
 
     fd = 0;
-    if (file_test(file_name) == HERE)
+    /*if (file_test(file_name) == HERE)
     {
-        fd = open(file_name, O_WRONLY | O_CREAT | O_TRUNC);
+        fd = open(file_name, O_CREAT | O_WRONLY | O_TRUNC, 0777);
         if (fd <= 0)
             return ;
         dup2(fd, STDOUT_FILENO);
         close(fd);
-    }
-    else if (file_test(file_name) <= PERM) // file exist but have inssufisance perm
+    }*/
+    if (file_test(file_name) != HERE)
         return ;
     else
     {
         if (redir_type == 0)
-            fd = open(file_name, O_WRONLY | O_TRUNC); // clear file to write in it
+            fd = open(file_name, O_CREAT | O_WRONLY | O_TRUNC, 0777);
         else
-            fd = open(file_name, O_WRONLY | O_APPEND); // add writing
-        if (fd <= 0)
+            fd = open(file_name, O_CREAT | O_WRONLY | O_APPEND, 0777);
+        if (fd < 0)
+            return;
+        if (dup2(fd, STDOUT_FILENO) < 0)
+        {
+            close(fd);
             return ;
-        dup2(fd, STDOUT_FILENO);
-        close(fd);
+        }
     }
+    close(fd);
 }
 
 void redir_left(char *file_name, char *pass, int redir_type)
@@ -93,23 +97,68 @@ void redir_left(char *file_name, char *pass, int redir_type)
         close(fd);
     }
 }
+/*
+prioriter << => > 
+
+<< pass = .herdoc
+
+*/
 
 /*
-void redir(t_shell *sh, int l)
+static int identifie(char *token, int before)
 {
-    int i;
-    int before;
-
-    i = 0;
-    before = -1;
-    while (sh->)
+    if (!ft_strcmp(token, "<<"))
+        return (REDIR_D_LEFT);
+    else if (!ft_strcmp(token, ">>"))
+        return (REDIR_D_RIGHT);
+    else if (!ft_strcmp(token, ">"))
+        return (REDIR_RIGHT);
+    else if (!ft_strcmp(token, "<"))
+        return (REDIR_LEFT);
+    else if (before == REDIR_D_LEFT)
+        return (HEREDOC_PASS);
+    else if (before == REDIR_D_RIGHT || before == REDIR_RIGHT)
+        return (FILE);
+    else
+        return (UNKNOWN);
 }
 */
 
-/*
+static char **hollow(int token, char **f)
+{
+    int i;
+    int j;
 
-        waitpid(p.pid[p.ti.b], &p.ti.c, WIFEXITED(p.pid[p.ti.b]));
-		p.ti.b++;
-		g_ms.stat = WEXITSTATUS(p.ti.c);
-        
-*/
+    i = -1;
+    j = 0;
+    while (f[j])
+    {
+        i = identifie(f[j], i);
+        if (i == )
+    }
+}
+
+void redir(t_shell *sh)
+{
+    int i;
+    int before;
+    char **cpy;
+
+    i = 0;
+    before = -1;
+    cpy = ft_tabdup(sh->p_cmd);
+    tokenizer(sh->p_cmd);
+    while (sh->p_cmd[i])
+    {
+        before = identifie(sh->p_cmd[i], before);
+        if (i > 1 && before == REDIR_RIGHT && sh->p_cmd[i + 1] && identifie(sh->p_cmd[i + 1], before) == FILE)
+        {
+            redir_right(sh->p_cmd[i + 1], 0);
+            tab_free(sh->p_cmd);
+
+        }
+        else if (i > 1 && before == REDIR_D_RIGHT && sh->p_cmd[i + 1] && identifie(sh->p_cmd[i + 1], before) == FILE)
+             redir_right(sh->p_cmd[i + 1], 1);
+        i++;
+    }
+}

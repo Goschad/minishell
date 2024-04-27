@@ -22,21 +22,26 @@ static int add_argc(char **argv)
 	return (i);
 }
 
-static void pipeline_cut(int i, int *fd, int *pipefd, int n_step)
+static void pipeline_cut(int i, int *fd, int *pipefd, t_shell *sh)
 {
-    int fdd;
+    int n_steps;
 
+    n_steps = sh->pipl.n_steps - 1;
     if (i != 0)
     {
         dup2(*fd, 0);
         close(*fd);
     }
-    if (i != n_step)
+    if (i != n_steps)
     {
         dup2(pipefd[1], 1);
         close(pipefd[0]);
         close(pipefd[1]);
     }
+    redir(sh);
+    find_bull(sh, sh->p_cmd, i);
+    tab_free(sh->p_cmd);     
+    sh->p_cmd = NULL;
 }
 
 static void pid_cut(t_shell *shell, pid_t *pid, int i)
@@ -63,13 +68,7 @@ void execute_pipeline(t_shell *shell, int i, int j, int input_fd)
             pipe(pipefd);
         pid_cut(shell, &pid, i);
         if (pid == 0)
-        {
-            pipeline_cut(i, &input_fd, pipefd, shell->pipl.n_steps - 1);
-            // redir("test.txt", 1); // marche bien juste il faut parser maintenant + marchain avec le mdp etc << coucou > l
-            find_bull(shell, shell->p_cmd, i);
-            tab_free(shell->p_cmd);
-            shell->p_cmd = NULL;
-        }
+            pipeline_cut(i, &input_fd, pipefd, shell);
         else
             tab_free(shell->p_cmd);
         if (i != 0)
@@ -78,5 +77,9 @@ void execute_pipeline(t_shell *shell, int i, int j, int input_fd)
             ((void)0, close(pipefd[1]), input_fd = pipefd[0]);
     }
     while (++j <= shell->pipl.n_steps - 1)
-        wait(NULL);
+    {
+        // wait(NULL);
+        waitpid(pid, &shell->var.i, WIFEXITED(pid));
+		shell->status = WEXITSTATUS(shell->var.i);
+    }
 }

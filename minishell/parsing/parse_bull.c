@@ -22,7 +22,7 @@ static int supp_bin(char *f)
 
 int	isnt_bull(t_shell *shell, char **cmd, int i)
 {
-	if (supp_bin(cmd[0]) == TRUE)
+	if (supp_bin(cmd[0]) == TRUE || env_len(cmd) > 0)
 		return (1);
 	if (!ft_strcmp(cmd[0], "cd") || !ft_strcmp(cmd[0], "exit")
 		|| !ft_strcmp(cmd[0], "export") || !ft_strcmp(cmd[0], "unset")
