@@ -3,38 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   launch_shell.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:22:33 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/04/26 11:12:40 by jguerin          ###   ########.fr       */
+/*   Updated: 2024/04/27 08:21:46 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-static void	remakepp(char **readed)
+static void remakepp(char **readed)
 {
-	char	*cpy;
-
+	char *cpy;
+	
 	cpy = ft_strdup(*readed);
 	free(*readed);
 	*readed = rebuild_space_line(cpy, 0, 0);
 	free(cpy);
 }
 
-static void	remake(char **readed, char *(*f)(char *))
+int banned(char *readed)
 {
-	char	*cpy;
-
-	cpy = ft_strdup(*readed);
-	free(*readed);
-	*readed = f(cpy);
-	free(cpy);
-}
-
-static int	banned(char *readed)
-{
-	int	i;
+	int i;
 
 	i = 0;
 	if (!ft_strcmp(readed, ""))
@@ -48,11 +38,11 @@ static int	banned(char *readed)
 	return (1);
 }
 
-void	launch(t_shell *shell)
+void launch(t_shell *shell)
 {
-	char	*readed;
-	char	*cpy;
-
+	char *readed;
+	char *cpy;
+	
 	readed = NULL;
 	cpy = NULL;
 	while (shell->mini == 1)
@@ -62,13 +52,12 @@ void	launch(t_shell *shell)
 		readed = readline(cpy);
 		free(cpy);
 		cpy = NULL;
-		if (readed && banned(readed) == 1)
+		if (readed && banned(readed) == TRUE)
 		{
-			remake(&readed, &reboot_line);
 			if (readed && ft_strcmp("", readed))
-				history(readed);
+			 	history(readed);
 			remakepp(&readed);
-			if (check_quote(readed))
+			if (reboot_line(readed) == TRUE && check_quote(readed))
 				parse(readed, shell);
 		}
 		else if (!readed)

@@ -1,33 +1,12 @@
-Marwen :
+redir > << >> <
 
-- Tokenizer : bof
-- historique : true
-- parsing : true
-- convert variable d'env : false
-- quote : true (juste la fonction qui enleve les quotes mais elle est pas encore utilisée)
-- pipe : true
-- redirection : true (le principe) (parse les < > <> << >>)
-  {
-    << : heredoc>
+quotes
 
-    PARSING :
-        >> : O_APPEND
-        > : O_TRUNC
-  }
+/* si jai le temps */
 
-Julien :
+env -i bash
 
-- echo : true
-- env : true
-- exit : true
-- cd : WIP
-- pwd : true
-- export : false
-- unset : false
-- signal ^C + ^\ : false
+stat = 1 si env vide, pour savoir si util export path alors stat = 0
 
-- wildcard : false (la fonction qui envoie la liste des fichier du repertoire courant est prete tu as juste a check si le (exemple) "*.c" fini par .c)
+getenv(home) etc
 
-pwd -> echo -> exit -> cd -> export / unset
-
-PS : 🎉 Bon courage 🎉 Force a toi 🎉 Stresse pas 🎉

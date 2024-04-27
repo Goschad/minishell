@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   basic_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:31:05 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/04/26 11:01:11 by jguerin          ###   ########.fr       */
+/*   Updated: 2024/02/14 13:18:59 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,8 @@
 
 void	print_tab(char **tab)
 {
-	int	i;
-
-	i = 0;
-	while (tab[i])
-	{
+	for (int i = 0; tab[i]; i++)
 		printf("%s\n", tab[i]);
-		i++;
-	}
 }
 
 int	basic(int argc, char **env, t_shell *shell)

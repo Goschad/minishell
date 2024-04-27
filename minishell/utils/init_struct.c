@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:56:55 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/04/26 10:29:48 by jguerin          ###   ########.fr       */
+/*   Updated: 2024/04/26 05:52:24 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	init_shell(t_shell *shell)
+void init_shell(t_shell *shell)
 {
 	shell->all = NULL;
 	shell->cmd = NULL;

@@ -74,6 +74,7 @@ $(NAME): $(OBJS)
 
 clear:
 	@rm -rf history/.shellHistory
+	@rm -rf .heredoc
 
 clean:
 	@rm -rf $(OBJS)

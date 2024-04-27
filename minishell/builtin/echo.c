@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 15:26:55 by jguerin           #+#    #+#             */
-/*   Updated: 2024/04/26 11:29:11 by jguerin          ###   ########.fr       */
+/*   Updated: 2024/04/26 06:15:42 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,5 @@ void	echo(char **args, t_shell *shell)
 	if (n_flag == 0)
 		write(1, "\n", 1);
 	return (set_status(0, shell));
+	
 }

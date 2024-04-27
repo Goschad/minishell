@@ -6,7 +6,7 @@
 /*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 17:48:25 by mbouaza           #+#    #+#             */
-/*   Updated: 2023/11/07 15:11:00 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/04/27 08:01:50 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 /* Creation of my buffer_size, used for read() */
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 5
+#  define BUFFER_SIZE 1
 # endif
 
 /* include */

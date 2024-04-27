@@ -12,10 +12,23 @@
 
 #include "../include/minishell.h"
 
+static int supp_bin(char *f)
+{
+	if (f[5] && f[0] == '/' && f[1] == 'b' &&  f[2] == 'i' &&  f[3] == 'n'
+		&&  f[4] == '/' && f[5] != '\0')
+		return (TRUE);
+	return (FALSE);
+}
+
 int	isnt_bull(t_shell *shell, char **cmd, int i)
 {
+	if (supp_bin(cmd[0]) == TRUE)
+		return (1);
 	if (!ft_strcmp(cmd[0], "cd") || !ft_strcmp(cmd[0], "exit")
-		|| !ft_strcmp(cmd[0], "export") || !ft_strcmp(cmd[0], "unset"))
+		|| !ft_strcmp(cmd[0], "export") || !ft_strcmp(cmd[0], "unset")
+		|| command_exists(cmd[0], 0) == FALSE
+		|| !ft_strcmp(cmd[0], "env") || !ft_strcmp(cmd[0], "echo")
+		|| !ft_strcmp(cmd[0], "pwd"))
 		return (-1);
 	return (1);
 }

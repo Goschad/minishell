@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 04:09:26 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/04/26 11:09:38 by jguerin          ###   ########.fr       */
+/*   Updated: 2024/04/27 08:22:10 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 // open check les autorisation du fichier
 
-static void	token(char **cmds, int i)
+static void token(char **cmds, int i)
 {
 	if (!ft_strcmp(cmds[i], "<<"))
 		printf("%s : herdoc redir\n", cmds[i]);
@@ -36,7 +36,7 @@ static void	token(char **cmds, int i)
 		printf("%s : str\n", cmds[i]);
 }
 
-static void	debug(char *readed)
+static void debug(char *readed)
 {
 	printf("---------------------- info ----------------------\n");
 	printf("• quotes parse = %s\n", quoted_line(readed));
@@ -45,10 +45,10 @@ static void	debug(char *readed)
 	printf("--------------------------------------------------\n");
 }
 
-static int	count_pipe(char **cmds)
+static int count_pipe(char **cmds)
 {
-	int	n;
-	int	i;
+	int n;
+	int i;
 
 	i = 0;
 	n = 0;
@@ -61,12 +61,12 @@ static int	count_pipe(char **cmds)
 	return (n);
 }
 
-static char	**make_cmds(char **av, int pipeline, int i, int j)
+static char **make_cmds(char **av, int pipeline, int i, int j)
 {
-	char	*tmp2;
-	char	*tmp;
-	char	*line;
-	char	**cmd;
+	char *tmp2;
+	char *tmp;
+	char *line;
+	char **cmd;
 
 	line = NULL;
 	cmd = malloc(sizeof(char *) * (pipeline + 1));
@@ -91,17 +91,18 @@ static char	**make_cmds(char **av, int pipeline, int i, int j)
 	return (cmd);
 }
 
-void	parse(char *readed, t_shell *shell)
+void parse(char *readed, t_shell *shell)
 {
-	int		i;
-	char	**cpy;
-	char	*cpyy;
-
+	int i;
+	char *cpyy;
+	char **cpy;
+	
 	i = 0;
-	// heredoc("test", shell);
 	cpy = NULL;
 	cpyy = ft_strdup(readed);
 	cpyy = env_conversion(cpyy, shell->env, -1, shell);
+	if (banned(cpyy) == FALSE)
+		return (free(cpyy));
 	change_nl(cpyy);
 	shell->all = cut_cmd(cpyy);
 	cpy = ft_tabdup(shell->all);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 10:47:08 by jguerin           #+#    #+#             */
-/*   Updated: 2024/04/26 11:29:28 by jguerin          ###   ########.fr       */
+/*   Updated: 2024/04/26 08:10:05 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	exit_value(int n, char *str, t_shell *shell)
 
 int	ex(int n, int *test, char *str, t_shell *shell)
 {
-	if (n == 1)
+	if (n == 1 )
 	{
 		print_exit();
 		exit_value(1, str, shell);
