@@ -10,3 +10,4 @@ stat = 1 si env vide, pour savoir si util export path alors stat = 0
 
 getenv(home) etc
 
+export lol=">>"

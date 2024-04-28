@@ -24,9 +24,9 @@ SRCS = 	main.c \
 		utils/ft_itoa.c \
 		utils/cut_cmd_utils.c \
 		utils/conversion_utils.c \
+		utils/heredoc_utils.c \
 		utils/env_utils.c \
 		utils/status.c \
-		utils/errors.c \
 		utils/shlvl.c \
 		launch/launch_shell.c \
 		history/history.c \

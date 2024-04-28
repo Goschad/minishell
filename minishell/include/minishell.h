@@ -46,6 +46,10 @@
 
 # define PATH "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
+// --- [ define error msg ] --- //
+
+# define TOKEN_ERR "minishell: syntax error near unexpected token `"
+
 // --- [ structure ] --- //
 
 struct Pipe
@@ -160,6 +164,7 @@ void	global_free(t_shell *shell);
 
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *str, int fd);
+void 	ft_error(char *s1, char *s2, char *s3);
 void	put_error(char *exe, char *file, int err, char *error);
 
 /* utils copy */
@@ -205,6 +210,8 @@ int			ft_isdigit(int c);
 int			ft_isalnum(int c);
 int 		banned(char *readed);
 void		is_neg(int n, t_shell *shell);
+void 		unexpected(int token, char **f);	
+void 		heredoc_priority(int token, char **f);
 
 /* signal */
 

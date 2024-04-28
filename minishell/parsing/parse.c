@@ -6,7 +6,7 @@
 /*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 04:09:26 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/04/27 08:22:10 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/04/28 12:00:06 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ static char **make_cmds(char **av, int pipeline, int i, int j)
 	return (cmd);
 }
 
+// au propre
+
 void parse(char *readed, t_shell *shell)
 {
 	int i;
@@ -100,6 +102,11 @@ void parse(char *readed, t_shell *shell)
 	i = 0;
 	cpy = NULL;
 	cpyy = ft_strdup(readed);
+
+	shell->all = cut_cmd(cpyy);
+	unexpected(-1, shell->all);
+	tab_free(shell->all);
+
 	cpyy = env_conversion(cpyy, shell->env, -1, shell);
 	if (banned(cpyy) == FALSE)
 		return (free(cpyy));

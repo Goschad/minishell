@@ -6,7 +6,7 @@
 /*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 16:34:40 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/04/27 14:14:32 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/04/28 13:33:56 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 int identifie(char *token, int before)
 {
-    if (!ft_strcmp(token, "<<"))
+    if (before == REDIR_D_LEFT)
+        return (HEREDOC_PASS);
+    else if (!ft_strcmp(token, "<<"))
         return (REDIR_D_LEFT);
     else if (!ft_strcmp(token, ">>"))
         return (REDIR_D_RIGHT);
@@ -22,8 +24,6 @@ int identifie(char *token, int before)
         return (REDIR_RIGHT);
     else if (!ft_strcmp(token, "<"))
         return (REDIR_LEFT);
-    else if (before == REDIR_D_LEFT)
-        return (HEREDOC_PASS);
     else if (before == REDIR_D_RIGHT || before == REDIR_RIGHT)
         return (FILE);
     else
@@ -65,7 +65,6 @@ void tokenizer(char **test)
     }
     printf("\n");
 }
-// askip c le debut
 
 void heredoc(char *pass)
 {
