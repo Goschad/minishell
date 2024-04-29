@@ -161,6 +161,7 @@ void redir(t_shell *sh)
     i = 0;
     before = -1;
     cpy = ft_tabdup(sh->p_cmd);
+    // tokenizer(sh->p_cmd);
     while (sh->p_cmd[i])
     {
         before = identifie(sh->p_cmd[i], before);
@@ -181,6 +182,13 @@ void redir(t_shell *sh)
         else if (before == REDIR_D_LEFT && sh->p_cmd[i + 1] && identifie(sh->p_cmd[i + 1], before) == HEREDOC_PASS)
         {
             redir_left(NULL, sh->p_cmd[i + 1], REDIR_D_LEFT);
+            st_cmd(sh, i, i + 1);
+            i = -1;
+            before = -1;
+        }
+        else if (before == REDIR_LEFT && sh->p_cmd[i + 1] && identifie(sh->p_cmd[i + 1], before) == FILE)
+        {
+            redir_left(sh->p_cmd[i + 1], NULL, REDIR_LEFT);
             st_cmd(sh, i, i + 1);
             i = -1;
             before = -1;

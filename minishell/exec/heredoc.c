@@ -6,7 +6,7 @@
 /*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 16:34:40 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/04/28 13:33:56 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/04/28 14:07:26 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int identifie(char *token, int before)
         return (REDIR_RIGHT);
     else if (!ft_strcmp(token, "<"))
         return (REDIR_LEFT);
-    else if (before == REDIR_D_RIGHT || before == REDIR_RIGHT)
+    else if (before == REDIR_D_RIGHT || before == REDIR_RIGHT
+        || before == REDIR_LEFT)
         return (FILE);
     else
         return (UNKNOWN);
