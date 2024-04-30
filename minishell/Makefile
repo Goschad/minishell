@@ -26,6 +26,7 @@ SRCS = 	main.c \
 		utils/conversion_utils.c \
 		utils/heredoc_utils.c \
 		utils/redir_utils.c \
+		utils/check_redir.c \
 		utils/env_utils.c \
 		utils/status.c \
 		utils/shlvl.c \

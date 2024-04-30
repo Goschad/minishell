@@ -114,7 +114,7 @@ void	launch(t_shell *shell);
 int		update(char c, int *in_q);
 int		update_sd(char c, int *in_q, int *qs, int *qd);
 
-void	parse(char *readed, int i, t_shell *shell);
+int		parse(char *readed, int i, t_shell *shell);
 
 void	change_nl(char *readed);
 int		reboot_line(char *readed);
@@ -167,7 +167,7 @@ void 		redir_left(char *file_name, char *pass, int redir_type);
 /* utils heredoc */
 
 void 		make_heredoc(char **f, int bf);
-void 		unexpected(int token, char **f);	
+int 		unexpected(int token, char **f);	
 void 		heredoc_priority(int token, char **f);
 
 /* utils free */

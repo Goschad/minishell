@@ -44,9 +44,28 @@ static void pipeline_cut(int i, int *fd, int *pipefd, t_shell *sh)
     sh->p_cmd = NULL;
 }
 
+static void parse_quotes(t_shell *sh)
+{
+    int i;
+    char **tab;
+
+    i = 0;
+    tab = ft_tabdup(sh->p_cmd);
+    tab_free(sh->p_cmd);
+    sh->p_cmd = malloc(sizeof(char *) * env_len(tab) + 1);
+    while (tab[i])
+    {
+        sh->p_cmd[i] = quoted_line(tab[i]);
+        i++;
+    }
+    sh->p_cmd[i] = NULL;
+    tab_free(tab);
+}
+
 static void pid_cut(t_shell *shell, pid_t *pid, int i)
 {
     shell->p_cmd = cut_cmd(shell->cmd[i]);
+    // parse_quotes(shell);
 	shell->argc = add_argc(shell->p_cmd);
     shell->forked_cmd = isnt_bull(shell, shell->p_cmd);
     if (shell->forked_cmd == 1)

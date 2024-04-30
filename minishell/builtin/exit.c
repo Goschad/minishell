@@ -6,7 +6,7 @@
 /*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 10:47:08 by jguerin           #+#    #+#             */
-/*   Updated: 2024/04/30 06:15:24 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/04/30 11:01:42 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ int	ex(int n, int *test, char *str, t_shell *shell)
 	}
 	else if (n == 4)
 	{
-		print_exit();
 		exit_value(4, str, shell);
 	}
 	return (1);

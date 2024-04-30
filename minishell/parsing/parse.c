@@ -6,7 +6,7 @@
 /*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 04:09:26 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/04/30 08:06:35 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/04/30 13:12:54 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,15 @@ static char **pre_v2(char *str, t_shell *sh)
 	return (tab);
 }
 
-static void	pre_v1(char *str, t_shell *sh)
+static int	pre_v1(char *str, t_shell *sh)
 {
 	sh->all = cut_cmd(str);
 	unexpected(-1, sh->all);
+	//if (redir_err(sh->all) == FALSE)
+	//	return (FALSE);
 	make_heredoc(sh->all, -1);
 	tab_free(sh->all);
+	return (TRUE);
 }
 
 static void exec(char **tab, t_shell *sh)
@@ -54,21 +57,23 @@ static void exec(char **tab, t_shell *sh)
 	sh->pipl.n_steps = count_pipe(sh->all) + 1;
 	sh->cmd = make_cmds(sh->all, sh->pipl.n_steps, 0, 0);
 	execute_pipeline(sh, -1, -1, 0);
+	unlink("./.heredoc");
 }
 
-void parse(char *readed, int i, t_shell *shell)
+int parse(char *readed, int i, t_shell *shell)
 {
 	char *cpyy;
 	char **cpy;
 	
 	cpy = NULL;
 	cpyy = ft_strdup(readed);
-	pre_v1(cpyy, shell);
+	if (pre_v1(cpyy, shell) == FALSE)
+		return (free(cpyy), FALSE);
 	cpyy = env_conversion(cpyy, shell->env, -1, shell);
 	if (banned(cpyy) == FALSE)
-		return (free(cpyy));
+		return (free(cpyy), FALSE);
 	cpy = pre_v2(cpyy, shell);
 	exec(cpy, shell);
 	multfree(cpyy, NULL, shell->cmd, shell->all);
-	tab_free(cpy);
+	return (tab_free(cpy), TRUE);
 }

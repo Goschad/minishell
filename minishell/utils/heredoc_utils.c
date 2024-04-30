@@ -6,13 +6,13 @@
 /*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 11:13:35 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/04/30 07:31:00 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/04/30 12:10:39 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-static int verif_part2(char *t, char *pass)
+static int verif_part1(char *t, char *pass)
 {
     int i;
 
@@ -40,7 +40,9 @@ static int verif_pass(char *pass, char *t)
     i = 0;
     if (!pass)
         return (TRUE);
-    while (ft_strlen(pass) == 1 && t[i])
+    if (verif_part1(t, pass) == FALSE)
+        return (FALSE);
+    while (ft_strlen(pass) >= 1 && t[i])
     {
         if (pass[0] == t[i])
         {
@@ -51,8 +53,6 @@ static int verif_pass(char *pass, char *t)
         }
         i++;
     }
-    if (verif_part2(t, pass) == FALSE)
-        return (FALSE);
     return (TRUE);
 }
 
@@ -73,7 +73,7 @@ void make_heredoc(char **f, int bf)
     }
 }
 
-void unexpected(int token, char **f)
+int unexpected(int token, char **f)
 {
     int j;
 
@@ -83,11 +83,12 @@ void unexpected(int token, char **f)
         token = identifie(f[j], token);
         if (token == HEREDOC_PASS)
         {
-            if (verif_pass(f[j], "|<>&") == FALSE);
-                return ;
+            if (verif_pass(f[j], "|<>&") == FALSE)
+                return (FALSE);
         }
         j++;
     }
+    return (TRUE);
 }
 
 void heredoc_priority(int token, char **f)

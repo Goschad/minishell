@@ -15,3 +15,5 @@ export lol=">>"
 export > test error
 unset
 exit
+
+$? + $?
