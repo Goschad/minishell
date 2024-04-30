@@ -38,7 +38,7 @@ static void pipeline_cut(int i, int *fd, int *pipefd, t_shell *sh)
         close(pipefd[0]);
         close(pipefd[1]);
     }
-    redir(sh);
+    redir(sh, -1);
     find_bull(sh, sh->p_cmd, i);
     tab_free(sh->p_cmd);     
     sh->p_cmd = NULL;
@@ -48,7 +48,7 @@ static void pid_cut(t_shell *shell, pid_t *pid, int i)
 {
     shell->p_cmd = cut_cmd(shell->cmd[i]);
 	shell->argc = add_argc(shell->p_cmd);
-    shell->forked_cmd = isnt_bull(shell, shell->p_cmd, i);
+    shell->forked_cmd = isnt_bull(shell, shell->p_cmd);
     if (shell->forked_cmd == 1)
         *pid = fork();
     else
@@ -78,8 +78,8 @@ void execute_pipeline(t_shell *shell, int i, int j, int input_fd)
     }
     while (++j <= shell->pipl.n_steps - 1)
     {
-        // wait(NULL);
         waitpid(pid, &shell->var.i, WIFEXITED(pid));
-		shell->status = WEXITSTATUS(shell->var.i);
+        if (shell->forked_cmd == 1)
+		    shell->status = WEXITSTATUS(shell->var.i);
     }
 }

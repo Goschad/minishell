@@ -25,6 +25,7 @@ SRCS = 	main.c \
 		utils/cut_cmd_utils.c \
 		utils/conversion_utils.c \
 		utils/heredoc_utils.c \
+		utils/redir_utils.c \
 		utils/env_utils.c \
 		utils/status.c \
 		utils/shlvl.c \
@@ -49,7 +50,8 @@ SRCS = 	main.c \
 		bonus/seconde_type.c \
 		bonus/third_type.c \
 		get_next_line/get_next_line.c \
-		get_next_line/get_next_line_utils.c
+		get_next_line/get_next_line_utils.c \
+		utils/tmp.c
 
 # utils/errors.c \
 

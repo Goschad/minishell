@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cut_cmd_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 17:53:11 by GIGI              #+#    #+#             */
-/*   Updated: 2024/01/05 12:05:11 by marvin           ###   ########.fr       */
+/*   Updated: 2024/04/30 07:54:59 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,33 @@ int quotes_cmd_size(char *line)
             i++;
     }
     return (num);
+}
+
+char **make_cmds(char **av, int pipeline, int i, int j)
+{
+	char *tmp2;
+	char *tmp;
+	char *line;
+	char **cmd;
+
+	((void)0, line = NULL, tmp = NULL, tmp2 = NULL, cmd = NULL);
+	cmd = malloc(sizeof(char *) * (pipeline + 1));
+	while (av[i])
+	{
+		line = ft_strdup(av[i++]);
+		while (av[i] && ft_strcmp(av[i], "|"))
+		{
+			tmp = ft_join(line, " ");
+			free(line);
+			tmp2 = ft_join(tmp, av[i++]);
+			line = ft_strdup(tmp2);
+			multfree(tmp, tmp2, NULL, NULL);
+		}
+		if (av[i] && !ft_strcmp(av[i], "|"))
+			i++;
+		cmd[j++] = ft_strdup(line);
+		free(line);
+	}
+	cmd[j] = NULL;
+	return (cmd);
 }

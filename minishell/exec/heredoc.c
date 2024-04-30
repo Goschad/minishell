@@ -6,7 +6,7 @@
 /*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 16:34:40 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/04/28 14:07:26 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/04/30 07:16:16 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,42 +29,6 @@ int identifie(char *token, int before)
         return (FILE);
     else
         return (UNKNOWN);
-}
-
-// le dernier file doit etre pri en compte
-static int prinToken(int token)
-{
-    if (token == REDIR_D_LEFT)
-        printf("[heredoc redir]");
-    else if (token == REDIR_D_RIGHT)
-        printf("[redir double vers la droite]");
-    else if (token == REDIR_LEFT)
-        printf("[redir simple gauche]");
-    else if (token == REDIR_RIGHT)
-        printf("[redir simple droite]");
-    else if (token == HEREDOC_PASS)
-        printf("[password heredoc]");
-    else if (token == FILE)
-        printf("[fichier]");
-    else
-        printf("[inconnu]");
-}
-
-void tokenizer(char **test)
-{
-    int i;
-    int before;
-
-    i = 0;
-    before = 0;
-    while (test[i])
-    {
-        before = identifie(test[i], before);
-        prinToken(before);
-        printf(" ");
-        i++;
-    }
-    printf("\n");
 }
 
 void heredoc(char *pass)

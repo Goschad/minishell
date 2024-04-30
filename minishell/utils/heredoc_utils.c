@@ -6,11 +6,32 @@
 /*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 11:13:35 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/04/28 13:28:55 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/04/30 07:31:00 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+
+static int verif_part2(char *t, char *pass)
+{
+    int i;
+
+    i = 0;
+    while (ft_strlen(pass) > 1 && t[i])
+    {
+        if (pass[0] == t[i] && (pass[1] == t[0] || pass[1] == t[1]
+            || pass[1] == t[2] || pass[1] == t[3]))
+        {
+            ft_error(TOKEN_ERR, NULL, NULL);
+            ft_putchar_fd(t[i], 2);
+            ft_putchar_fd(pass[1], 2);
+            ft_error("'\n", NULL, NULL);
+            return (FALSE);
+        }
+        i++;
+    }
+    return (TRUE);
+}
 
 static int verif_pass(char *pass, char *t)
 {
@@ -30,20 +51,26 @@ static int verif_pass(char *pass, char *t)
         }
         i++;
     }
-    while (ft_strlen(pass) > 1 && t[i])
+    if (verif_part2(t, pass) == FALSE)
+        return (FALSE);
+    return (TRUE);
+}
+
+void make_heredoc(char **f, int bf)
+{
+    int i;
+
+    i = 0;
+    while (f[i])
     {
-        if (pass[0] == t[i] && (pass[1] == t[0] || pass[1] == t[1]
-            || pass[1] == t[2] || pass[1] == t[3]))
+        bf = identifie(f[i], bf);
+        if (bf == HEREDOC_PASS)
         {
-            ft_error(TOKEN_ERR, NULL, NULL);
-            ft_putchar_fd(t[i], 2);
-            ft_putchar_fd(pass[1], 2);
-            ft_error("'\n", NULL, NULL);
-            return (FALSE);
+            heredoc(f[i]);
+            bf = -1;
         }
         i++;
     }
-    return (TRUE);
 }
 
 void unexpected(int token, char **f)
@@ -62,8 +89,6 @@ void unexpected(int token, char **f)
         j++;
     }
 }
-
-// herdoc //
 
 void heredoc_priority(int token, char **f)
 {

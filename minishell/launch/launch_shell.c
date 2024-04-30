@@ -6,7 +6,7 @@
 /*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:22:33 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/04/28 11:48:13 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/04/30 07:33:33 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void launch(t_shell *shell)
 			 	history(readed);
 			remakepp(&readed);
 			if (reboot_line(readed) == TRUE && check_quote(readed))
-				parse(readed, shell);
+				parse(readed, 0, shell);
 		}
 		else if (!readed)
 			shell->mini = 2;

@@ -84,7 +84,10 @@ struct shell
 
 // --- [ function ] --- //
 
+/* tmp */
+
 void	print_tab(char **tab);
+void 	tokenizer(char **test);
 
 /* builtins */
 
@@ -111,7 +114,7 @@ void	launch(t_shell *shell);
 int		update(char c, int *in_q);
 int		update_sd(char c, int *in_q, int *qs, int *qd);
 
-void	parse(char *readed, t_shell *shell);
+void	parse(char *readed, int i, t_shell *shell);
 
 void	change_nl(char *readed);
 int		reboot_line(char *readed);
@@ -124,7 +127,7 @@ char	*rebuild_space_line(char *readed, int j, int in_q);
 char	**cut_cmd(char *line);
 
 void	find_bull(t_shell *shell, char **cmd, int i);
-int		isnt_bull(t_shell *shell, char **cmd, int i);
+int		isnt_bull(t_shell *shell, char **cmd);
 
 char	*env_conversion(char *s, char **env, int i, t_shell *mini);
 
@@ -133,8 +136,7 @@ char	*env_conversion(char *s, char **env, int i, t_shell *mini);
 void	shell_execve(char **env, t_shell *shell);
 void	execute_pipeline(t_shell *shell, int i, int j, int input_fd);
 
-void 	redir(t_shell *sh);
-void 	tokenizer(char **test);
+void 	redir(t_shell *sh, int before);
 
 void 	heredoc(char *pass);
 int 	identifie(char *token, int before);
@@ -146,19 +148,33 @@ void	history(char *readed);
 
 /* utils */
 
-char 	*actual_path(void);
+char 		*actual_path(void);
 
-int		quotes_cmd_size(char *line);
+int			quotes_cmd_size(char *line);
+char 		**make_cmds(char **av, int pipeline, int i, int j);
 
-void	init_shell(t_shell *shell);
+void		init_shell(t_shell *shell);
 
-int		var_c(char *s, int i);
-int		simp_char(char c, char *reject);
+int			var_c(char *s, int i);
+int			simp_char(char c, char *reject);
+
+/* utils redir */
+
+void 		st_cmd(t_shell *sh, int t1, int t2);
+void 		redir_right(char *file_name, int redir_type);
+void 		redir_left(char *file_name, char *pass, int redir_type);
+
+/* utils heredoc */
+
+void 		make_heredoc(char **f, int bf);
+void 		unexpected(int token, char **f);	
+void 		heredoc_priority(int token, char **f);
 
 /* utils free */
 
 void	tab_free(char **tab);
 void	global_free(t_shell *shell);
+void 	multfree(char *s1, char *s2, char **t1, char **t2);
 
 /* utils print */
 
@@ -210,8 +226,6 @@ int			ft_isdigit(int c);
 int			ft_isalnum(int c);
 int 		banned(char *readed);
 void		is_neg(int n, t_shell *shell);
-void 		unexpected(int token, char **f);	
-void 		heredoc_priority(int token, char **f);
 
 /* signal */
 

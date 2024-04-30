@@ -6,7 +6,7 @@
 /*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:34:36 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/04/26 06:19:38 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/04/30 08:09:02 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,6 @@ static char	*remplace_part(char *s, char *remplace, int start, int end)
 	free(s);
 	return (new_str);
 }
-
-// convertie les var env en leur valeur exemple : $PATH -> env var PATH //
 
 char	*env_conversion(char *s, char **env, int i, t_shell *mini)
 {
