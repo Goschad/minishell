@@ -1,19 +1,18 @@
-redir > << >> <
-
 quotes
 
 /* si jai le temps */
 
-env -i bash
-
-stat = 1 si env vide, pour savoir si util export path alors stat = 0
-
-getenv(home) etc
-
 export lol=">>"
 
-export > test error
-unset
-exit
+< >> = syntax error near unexpected token `>>'
 
-$? + $?
+echo test > $NONE_EXIST = ambigous redirect
+
+echo test > "$NONE_EXIST" = no such file directory
+
+segfault = |
+
+"<< or ijdeijdeijde | << " = syntax error near unexpected token `newline'
+
+
+
