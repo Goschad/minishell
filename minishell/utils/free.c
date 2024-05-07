@@ -6,7 +6,7 @@
 /*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:11:54 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/04/30 07:55:40 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/05/07 13:52:34 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void global_free(t_shell *shell)
 		tab_free(shell->env);
 	if (shell->heredoc)
 		free(shell->heredoc);
+	if (shell->n_c_cmd)
+		tab_free(shell->n_c_cmd);
 	if (shell)
 		free(shell);
 }

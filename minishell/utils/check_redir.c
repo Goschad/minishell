@@ -6,7 +6,7 @@
 /*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:13:19 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/04/30 13:04:43 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/05/07 15:53:30 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int redir_err(char **str)
     int i;
 
     i = 0; 
-    if (str[0] && !str[1] && !ft_strcmp(str[0], "|"))
+    if (str[0] && !ft_strcmp(str[0], "|"))
         return (ft_putstr_fd("pipe error\n", 2) ,FALSE);
     else if (count(str) == FALSE)
        return (ft_putstr_fd(TOKEN_ERR_SHORT, 2) ,FALSE);

@@ -35,7 +35,7 @@ static void redir_v2(int *bf, int *i, t_shell *sh)
     }
 }
 
-void redir(t_shell *sh, int before)
+int redir(t_shell *sh, int before)
 {
     int i;
     char **cpy;
@@ -44,7 +44,8 @@ void redir(t_shell *sh, int before)
     cpy = ft_tabdup(sh->p_cmd);
     while (sh->p_cmd[i])
     {
-
+        // if (id_n_co(sh, &before, i) == FALSE)
+        //    return (FALSE);
         before = identifie(sh->p_cmd[i], before);
         if (before == REDIR_RIGHT && sh->p_cmd[i + 1] && identifie(sh->p_cmd[i + 1], before) == FILE)
         {
@@ -61,4 +62,5 @@ void redir(t_shell *sh, int before)
         i++;
     }
     tab_free(cpy);
+    return (TRUE);
 }

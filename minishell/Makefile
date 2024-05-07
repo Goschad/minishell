@@ -30,6 +30,7 @@ SRCS = 	main.c \
 		utils/env_utils.c \
 		utils/status.c \
 		utils/shlvl.c \
+		utils/env_var.c \
 		launch/launch_shell.c \
 		history/history.c \
 		parsing/quotes.c \
@@ -56,7 +57,7 @@ SRCS = 	main.c \
 
 # utils/errors.c \
 
-READ_LIB = -lreadline -L /opt/homebrew/Cellar/readline/8.2.10/include/readline/readline.h
+READ_LIB = -lreadline -L/Users/$$USER/.brew/opt/readline/lib
 
 OBJS =	$(SRCS:.c=.o)
 

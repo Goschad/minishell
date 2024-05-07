@@ -2,11 +2,10 @@ quotes
 
 /* si jai le temps */
 
-echo test > $NONE_EXIST = ambigous redirect
+echo - = rien
 
-echo test > "$NONE_EXIST" = no such file directory
+export w en boucle
 
-export lol=">>"
+code error
 
-
-
+cat+ pipe

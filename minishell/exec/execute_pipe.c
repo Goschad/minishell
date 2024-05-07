@@ -38,11 +38,36 @@ static void pipeline_cut(int i, int *fd, int *pipefd, t_shell *sh)
         close(pipefd[0]);
         close(pipefd[1]);
     }
-    redir(sh, -1);
-    find_bull(sh, sh->p_cmd, i);
+    if (redir(sh, -1) != FALSE)
+        find_bull(sh, sh->p_cmd, i);
     tab_free(sh->p_cmd);     
     sh->p_cmd = NULL;
-} 
+}
+
+static char	*converte_line(char *line, int i, int j)
+{
+	char	*newline;
+	int		in_q;
+
+    newline = NULL;
+    in_q = 0;
+	while (line[++i])
+	{
+		if (!update(line[i], &in_q))
+			j++;
+	}
+	newline = malloc(sizeof(char) * j + 1);
+	i = -1;
+	j = 0;
+    in_q = 0;
+	while (line[++i])
+	{
+		if (!update(line[i], &in_q))
+			newline[j++] = line[i];
+	}
+	newline[j] = '\0';
+	return (newline);
+}
 
 static void parse_quotes(t_shell *sh)
 {
@@ -51,11 +76,14 @@ static void parse_quotes(t_shell *sh)
 
     i = 0;
     tab = ft_tabdup(sh->p_cmd);
+    if (!tab)
+        return ;
     tab_free(sh->p_cmd);
+    sh->p_cmd = NULL;
     sh->p_cmd = malloc(sizeof(char *) * env_len(tab) + 1);
     while (tab[i])
     {
-        sh->p_cmd[i] = quoted_line(tab[i]);
+        sh->p_cmd[i] = converte_line(tab[i], -1, 0);
         i++;
     }
     sh->p_cmd[i] = NULL;
@@ -97,8 +125,9 @@ void execute_pipeline(t_shell *shell, int i, int j, int input_fd)
     }
     while (++j <= shell->pipl.n_steps - 1)
     {
-        waitpid(pid, &shell->var.i, WIFEXITED(pid));
+        wait(NULL);
+        /* waitpid(pid, &shell->var.i, WIFEXITED(pid));
         if (shell->forked_cmd == 1)
-		    shell->status = WEXITSTATUS(shell->var.i);
+		    shell->status = WEXITSTATUS(shell->var.i);*/
     }
 }

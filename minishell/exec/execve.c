@@ -6,7 +6,7 @@
 /*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 22:47:18 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/04/30 06:15:21 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/05/07 16:02:59 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,6 @@ void shell_execve(char **env, t_shell *shell)
 	else if (path_is_built_different(shell->p_cmd[0], shell) == FALSE)
 		;
 	else
-		printf("minishelll: %s: command not found\n", shell->p_cmd[0]);
+		     printf("minishelll: %s: command not found\n", shell->p_cmd[0]);
 	set_status(127, shell);
 }

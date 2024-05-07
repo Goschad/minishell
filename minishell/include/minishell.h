@@ -32,6 +32,8 @@
 # define IN 5
 # define OUT 6
 
+# define NO 10
+
 // --- [ define Token ] --- //
 
 # define UNKNOWN -1
@@ -51,6 +53,7 @@
 # define TOKEN_ERR "minishell: syntax error near unexpected token `"
 # define TOKEN_ERR_SHORT "minishell: syntax error near unexpected token\n"
 # define TOKEN_NL_ERR "minishell: syntax error near unexpected token `newline'\n"
+# define AMBIG_ERR ": ambiguous redirect\n"
 
 // --- [ structure ] --- //
 
@@ -139,7 +142,7 @@ char	*env_conversion(char *s, char **env, int i, t_shell *mini);
 void	shell_execve(char **env, t_shell *shell);
 void	execute_pipeline(t_shell *shell, int i, int j, int input_fd);
 
-void 	redir(t_shell *sh, int before);
+int 	redir(t_shell *sh, int before);
 
 void 	heredoc(char *pass);
 int 	identifie(char *token, int before);
@@ -167,6 +170,7 @@ void 		st_cmd(t_shell *sh, int t1, int t2);
 void 		redir_right(char *file_name, int redir_type);
 void 		redir_left(char *file_name, char *pass, int redir_type);
 int 		redir_err(char **str);
+int 		id_n_co(t_shell *sh, int *bf, int i);
 
 /* utils heredoc */
 

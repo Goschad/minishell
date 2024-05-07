@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_utils.c                                        :+:      :+:    :+:   */
+/*   env_var.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 22:53:47 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/04/26 04:40:14 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/05/07 13:34:21 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int id_n_co(t_shell *sh, int *bf, int i)
     int bff;
     int j;
 
-    j = ;
+    j = i;
     bff = *bf;
     *bf = identifie(sh->p_cmd[i], *bf);
     if (env_len(sh->p_cmd) == env_len(sh->n_c_cmd))
@@ -80,9 +80,11 @@ int id_n_co(t_shell *sh, int *bf, int i)
         bff = identifie(sh->n_c_cmd[i], bff);
         if (bff == FILE && check(sh->n_c_cmd[i], sh->env, 0, 0) == NO)
         {
-            if (env_len(env_len(sh->p_cmd)) == i - 1)
-                ft_error("minishell: ", sh->n_c_cmd[i], AMBIGOUS_RDIR);
-            return (FALSE);
+            if (j == i - 1)
+            {
+                ft_error("minishell: ", sh->n_c_cmd[i], AMBIG_ERR);
+                return (FALSE);
+            }
         }
         i++;
     }

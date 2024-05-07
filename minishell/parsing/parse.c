@@ -6,7 +6,7 @@
 /*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 04:09:26 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/04/30 13:12:54 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/05/07 13:52:13 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ static char **pre_v2(char *str, t_shell *sh)
 	tab = NULL;
 	change_nl(str);
 	sh->all = cut_cmd(str);
-	print_tab(sh->all);
 	tab = ft_tabdup(sh->all);
 	tab_free(sh->all);
 	return (tab);
@@ -43,12 +42,16 @@ static char **pre_v2(char *str, t_shell *sh)
 
 static int	pre_v1(char *str, t_shell *sh)
 {
-	sh->all = cut_cmd(str);
-	print_tab(sh->all);
+	char *str2;
+
+	str2 = ft_strdup(str);
+	sh->all = cut_cmd(str2);
+	free(str2);
 	if (unexpected(-1, sh->all) == FALSE || redir_err(sh->all) == FALSE)
 		return (tab_free(sh->all), FALSE);
 	make_heredoc(sh->all, -1);
 	tab_free(sh->all);
+	sh->all = NULL;
 	return (TRUE);
 }
 
@@ -76,7 +79,10 @@ int parse(char *readed, int i, t_shell *shell)
 	if (banned(cpyy) == FALSE)
 		return (free(ne_cpy), free(cpyy), FALSE);
 	cpy = pre_v2(cpyy, shell);
+	shell->n_c_cmd = pre_v2(ne_cpy, shell);
 	exec(cpy, shell);
+	tab_free(shell->n_c_cmd);
+	shell->n_c_cmd = NULL;
 	multfree(cpyy, ne_cpy, shell->cmd, shell->all);
 	return (tab_free(cpy), TRUE);
 }
