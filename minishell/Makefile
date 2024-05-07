@@ -56,7 +56,7 @@ SRCS = 	main.c \
 
 # utils/errors.c \
 
-READ_LIB = -lreadline -L/Users/$$USER/.brew/opt/readline/lib
+READ_LIB = -lreadline -L /opt/homebrew/Cellar/readline/8.2.10/include/readline/readline.h
 
 OBJS =	$(SRCS:.c=.o)
 

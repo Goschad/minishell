@@ -18,6 +18,7 @@ void init_shell(t_shell *shell)
 	shell->cmd = NULL;
 	shell->heredoc = NULL;
 	shell->p_cmd = NULL;
+	shell->n_c_cmd = NULL;
 	shell->env = NULL;
 	shell->forked_cmd = 0;
 	shell->mini = 1;

@@ -12,7 +12,7 @@
 
 #include "../include/minishell.h"
 
-static void	ctrl_c(int plop)
+/*static void	ctrl_c(int plop)
 {
 	(void) plop;
 	if (1)
@@ -28,11 +28,11 @@ static void	ctrl_c(int plop)
 static __sighandler_t	ctrl_backslash(void)
 {
 	return (0);
-}
+}*/
 
 void	build_signal(void)
 {
-	signal(SIGQUIT, ctrl_backslash());
+	/*signal(SIGQUIT, ctrl_backslash());
 	signal(SIGINT, ctrl_c);
-	rl_catch_signals = 0;
+	rl_catch_signals = 0;*/
 }

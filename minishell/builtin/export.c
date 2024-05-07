@@ -50,6 +50,7 @@ int	format_check(char *arg, t_shell *shell)
 		return (0);
 	else if (flag == 1)
 		return (1);
+	return (0);
 }
 
 int	env_len(char **tab)

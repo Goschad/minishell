@@ -56,7 +56,7 @@ static char **set_file(char *line, char **dir, int a)
     int j;
 
     ((void)0, i = count_files(dir, line, 0, a), j = 0, files_list = NULL);
-    if (count_files == 0)
+    if (i == 0)
         return (NULL);
     files_list = malloc(sizeof(char *) * (i + 1));
     if (!files_list)

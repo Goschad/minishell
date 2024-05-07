@@ -49,6 +49,8 @@
 // --- [ define error msg ] --- //
 
 # define TOKEN_ERR "minishell: syntax error near unexpected token `"
+# define TOKEN_ERR_SHORT "minishell: syntax error near unexpected token\n"
+# define TOKEN_NL_ERR "minishell: syntax error near unexpected token `newline'\n"
 
 // --- [ structure ] --- //
 
@@ -75,6 +77,7 @@ struct shell
 	char	**heredoc;
 	char	**all;
 	char	**p_cmd;
+	char	**n_c_cmd;
 	char	**cmd;
 	char	**env;
 	t_pipe  pipl;
@@ -99,7 +102,7 @@ void		pwd(t_shell *shell);
 
 void		ft_exit(char **argv, t_shell *shell, t_exit xt);
 
-int			ft_cd(char **argv, t_shell *shell);
+void			ft_cd(char **argv, t_shell *shell);
 
 void		ft_export(char **cmd, char **argv, t_shell *shell);
 
@@ -163,6 +166,7 @@ int			simp_char(char c, char *reject);
 void 		st_cmd(t_shell *sh, int t1, int t2);
 void 		redir_right(char *file_name, int redir_type);
 void 		redir_left(char *file_name, char *pass, int redir_type);
+int 		redir_err(char **str);
 
 /* utils heredoc */
 
@@ -200,7 +204,7 @@ char		**ft_split(char const *s, char c);
 
 /* utils env */
 
-
+int 		id_n_co(t_shell *sh, int *bf, int i);
 int			check_env(char *s, char **env, int i);
 int			ft_checkenv(char *str, char **env);
 int			ft_checkenv2(char *str, char **env);

@@ -35,6 +35,7 @@ static char **pre_v2(char *str, t_shell *sh)
 	tab = NULL;
 	change_nl(str);
 	sh->all = cut_cmd(str);
+	print_tab(sh->all);
 	tab = ft_tabdup(sh->all);
 	tab_free(sh->all);
 	return (tab);
@@ -43,9 +44,9 @@ static char **pre_v2(char *str, t_shell *sh)
 static int	pre_v1(char *str, t_shell *sh)
 {
 	sh->all = cut_cmd(str);
-	unexpected(-1, sh->all);
-	//if (redir_err(sh->all) == FALSE)
-	//	return (FALSE);
+	print_tab(sh->all);
+	if (unexpected(-1, sh->all) == FALSE || redir_err(sh->all) == FALSE)
+		return (tab_free(sh->all), FALSE);
 	make_heredoc(sh->all, -1);
 	tab_free(sh->all);
 	return (TRUE);
@@ -63,17 +64,19 @@ static void exec(char **tab, t_shell *sh)
 int parse(char *readed, int i, t_shell *shell)
 {
 	char *cpyy;
+	char *ne_cpy;
 	char **cpy;
 	
 	cpy = NULL;
 	cpyy = ft_strdup(readed);
+	ne_cpy = ft_strdup(readed);
 	if (pre_v1(cpyy, shell) == FALSE)
-		return (free(cpyy), FALSE);
+		return (free(ne_cpy),free(cpyy), FALSE);
 	cpyy = env_conversion(cpyy, shell->env, -1, shell);
 	if (banned(cpyy) == FALSE)
-		return (free(cpyy), FALSE);
+		return (free(ne_cpy), free(cpyy), FALSE);
 	cpy = pre_v2(cpyy, shell);
 	exec(cpy, shell);
-	multfree(cpyy, NULL, shell->cmd, shell->all);
+	multfree(cpyy, ne_cpy, shell->cmd, shell->all);
 	return (tab_free(cpy), TRUE);
 }

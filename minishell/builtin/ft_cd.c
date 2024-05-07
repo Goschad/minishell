@@ -24,7 +24,7 @@ int	cd_home(t_shell *shell)
 	return (1);
 }
 
-int	ft_cd(char **argv, t_shell *shell)
+void	ft_cd(char **argv, t_shell *shell)
 {
 	int	i;
 	int	j;
@@ -40,7 +40,7 @@ int	ft_cd(char **argv, t_shell *shell)
 	{
 		shell->path = ft_getenv("HOME", shell->env);
 		if (chdir(shell->path) != 0)
-			return (1);
+			return ;
 	}
 	else if (argv[i])
 	{

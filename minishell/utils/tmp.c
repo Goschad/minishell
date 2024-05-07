@@ -28,6 +28,7 @@ static int prinToken(int token)
         printf("[fichier]");
     else
         printf("[inconnu]");
+    return (0);
 }
 
 void tokenizer(char **test)

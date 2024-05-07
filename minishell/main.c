@@ -23,7 +23,7 @@ int main(int argc, char **argv, char **env)
 		return (ft_putstr_fd("Malloc error\n", 2), 0);
 	else if (!basic(argc, env, shell))
 		return (0);
-	build_signal();
+	// build_signal();
 	make_history(shell);
 	launch(shell);
 	status = shell->status;

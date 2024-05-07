@@ -12,45 +12,60 @@
 
 #include "../include/minishell.h"
 
-
-static void err(char *str, int bool)
+static int count(char **str)
 {
-    ft_error(TOKEN_ERR, NULL, NULL);
-    ft_putchar_fd(str[0], 2);
-    if (bool == TRUE)
-        ft_putchar_fd(str[1], 2);
-    ft_error("'\n", NULL, NULL);
-}
+    int j;
+    int i;
 
-// a faire //
-
-static int token(char **str, int len)
-{
-    if (ft_strlen(str) >= 1)
+    j = 0;
+    i = 0;
+    while (str[j])
     {
-        if (str[0] == '<' || str[0] == '|'
-            || str[0] == '>' || str[0] == '&')
+        if (ft_strlen(str[j]) >= 3)
         {
-            if (ft_strlen(str) == 1)
-                return (err(str, FALSE), FALSE);
-            else
+            while (str[j][i])
             {
-                if (str[1] == '<' || str[1] == '|'
-                    || str[1] == '>' || str[1] == '&')
-                    return (err(str, FALSE), FALSE);
+                if (str[j][i] == '>' || str[j][i] == '<')
+                {
+                    i++;
+                    if (i == 3)
+                        return (FALSE);
+                }
                 else
-                    return (err(str, TRUE), FALSE);
+                    break;
             }
+            i = 0;
         }
+        j++;
     }
     return (TRUE);
 }
 
-int redir_err(char *str)
+static int nl_err(char **str, int bf)
+{
+    int j;
+
+    j = 0;
+    while (str[j])
+    {
+        if (bf >= REDIR_LEFT && bf <= REDIR_D_LEFT && !str[j])
+            return (FALSE);
+        bf = identifie(str[j], bf);
+        j++;
+    }
+    return (TRUE);
+}
+
+int redir_err(char **str)
 {
     int i;
 
-    i = 0;  
-    
+    i = 0; 
+    if (str[0] && !str[1] && !ft_strcmp(str[0], "|"))
+        return (ft_putstr_fd("pipe error\n", 2) ,FALSE);
+    else if (count(str) == FALSE)
+       return (ft_putstr_fd(TOKEN_ERR_SHORT, 2) ,FALSE);
+    else if (nl_err(str, -1) == FALSE)
+        return (ft_putstr_fd(TOKEN_NL_ERR, 2) ,FALSE);
     return (TRUE);
 }

@@ -37,7 +37,7 @@ void heredoc(char *pass)
     char	*line;
 
     signal(SIGINT, SIG_DFL);
-	rl_catch_signals = 1;
+	// rl_catch_signals = 1;
 	fd = open(".heredoc", O_CREAT | O_WRONLY | O_TRUNC, 0777);;
 	while (1)
 	{

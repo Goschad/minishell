@@ -42,7 +42,7 @@ static void pipeline_cut(int i, int *fd, int *pipefd, t_shell *sh)
     find_bull(sh, sh->p_cmd, i);
     tab_free(sh->p_cmd);     
     sh->p_cmd = NULL;
-}
+} 
 
 static void parse_quotes(t_shell *sh)
 {
@@ -65,7 +65,7 @@ static void parse_quotes(t_shell *sh)
 static void pid_cut(t_shell *shell, pid_t *pid, int i)
 {
     shell->p_cmd = cut_cmd(shell->cmd[i]);
-    // parse_quotes(shell);
+    parse_quotes(shell);
 	shell->argc = add_argc(shell->p_cmd);
     shell->forked_cmd = isnt_bull(shell, shell->p_cmd);
     if (shell->forked_cmd == 1)
