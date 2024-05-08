@@ -98,11 +98,11 @@ int	check_env(char *s, char **env, int i)
 	j = i;
 	path = NULL;
 	while (s[j] && simp_char(s[j + 1], " $\'=\"") == 0)
-				j++;
+		j++;
 	path = ft_substr(s, i + 1, j - i);
 	if (!path)
 		return (0);
-	if (check_path(path, env, 1) == 1)	
+	if (check_path(path, env, 1) == 1)
 		return (free(path), 1);
 	free(path);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:52:02 by jguerin           #+#    #+#             */
-/*   Updated: 2024/05/08 17:06:17 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/05/08 17:05:57 by jguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	ft_isalpha(int c)
 		return (1);
 	return (0);
 }
+
 int	ft_isdigit(int c)
 {
 	if (!(c >= '0' && c <= '9'))

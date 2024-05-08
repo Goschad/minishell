@@ -6,7 +6,7 @@
 /*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 04:09:26 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/05/08 16:47:01 by jguerin          ###   ########.fr       */
+/*   Updated: 2024/05/08 16:57:29 by jguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ static void	exec(char **tab, t_shell *sh)
 
 int	parse(char *readed, int i, t_shell *shell)
 {
-	char *cpyy;
-	char *ne_cpy;
-	char **cpy;
+	char	*cpyy;
+	char	*ne_cpy;
+	char	**cpy;
 
 	cpy = NULL;
 	cpyy = ft_strdup(readed);

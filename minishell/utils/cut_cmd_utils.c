@@ -3,47 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   cut_cmd_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 17:53:11 by GIGI              #+#    #+#             */
-/*   Updated: 2024/04/30 07:54:59 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/05/08 17:12:33 by jguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int quotes_cmd_size(char *line)
+int	quotes_cmd_size(char *line)
 {
-    int i;
-    int num;
-    int in_q;
+	int	i;
+	int	num;
+	int	in_q;
 
-    i = 0;
-    num = 0;
-    in_q = 0;
-    while (line[i])
-    {
-        if (update(line[i], &in_q))
-        {
-            i++;
-            num++;
-            while (line[i] && !update(line[i], &in_q))
-                i++;
-            
-            i++;
-        }
-        else
-            i++;
-    }
-    return (num);
+	i = 0;
+	num = 0;
+	in_q = 0;
+	while (line[i])
+	{
+		if (update(line[i], &in_q))
+		{
+			i++;
+			num++;
+			while (line[i] && !update(line[i], &in_q))
+				i++;
+			i++;
+		}
+		else
+			i++;
+	}
+	return (num);
 }
 
-char **make_cmds(char **av, int pipeline, int i, int j)
+char	**make_cmds(char **av, int pipeline, int i, int j)
 {
-	char *tmp2;
-	char *tmp;
-	char *line;
-	char **cmd;
+	char	*tmp2;
+	char	*tmp;
+	char	*line;
+	char	**cmd;
 
 	((void)0, line = NULL, tmp = NULL, tmp2 = NULL, cmd = NULL);
 	cmd = malloc(sizeof(char *) * (pipeline + 1));
