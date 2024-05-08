@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   remake_line.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 05:45:11 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/04/28 10:28:15 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/05/08 16:58:32 by jguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-static void change_whitespace(char *readed)
+static void	change_whitespace(char *readed)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (readed[i])
@@ -25,10 +25,10 @@ static void change_whitespace(char *readed)
 	}
 }
 
-static char *token_while(char *readed)
+static char	*token_while(char *readed)
 {
-	char *after;
-	char *tmp;
+	char	*after;
+	char	*tmp;
 
 	after = NULL;
 	tmp = NULL;
@@ -40,10 +40,10 @@ static char *token_while(char *readed)
 	return (tmp);
 }
 
-static int check_eol(char *readed)
+static int	check_eol(char *readed)
 {
-	int i;
-	
+	int	i;
+
 	i = ft_strlen(readed) - 1;
 	if (readed[i] == '\n')
 		readed[i--] = '\0';
@@ -59,9 +59,9 @@ static int check_eol(char *readed)
 	return (1);
 }
 
-void change_nl(char *readed)
+void	change_nl(char *readed)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (readed[i])
@@ -72,9 +72,9 @@ void change_nl(char *readed)
 	}
 }
 
-int reboot_line(char *readed)
+int	reboot_line(char *readed)
 {
-	char *readd;
+	char	*readd;
 
 	readd = NULL;
 	if (!readed || !ft_strcmp("", readed))
@@ -82,6 +82,6 @@ int reboot_line(char *readed)
 	readd = ft_strdup(readed);
 	change_whitespace(readd);
 	if (!check_eol(readd))
-		return (free(readd), ft_putstr_fd("pipe error\n", 2), FALSE); 
+		return (free(readd), ft_putstr_fd("pipe error\n", 2), FALSE);
 	return (free(readd), TRUE);
 }
