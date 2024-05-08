@@ -76,7 +76,7 @@ $(NAME): $(OBJS)
 	@sleep 0.1;
 	@/bin/echo -n ">"
 	@/bin/echo " success download 🥳"
-	@/bin/echo "minishell made by jguerin && mbouaza"
+	@/bin/echo "minishell made by mbouaza && jguerin"
 
 clear:
 	@rm -rf history/.shellHistory

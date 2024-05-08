@@ -46,7 +46,6 @@ int redir(t_shell *sh, int before)
     {
         if (id_n_co(sh, &before, i) == FALSE)
             return (tab_free(cpy), FALSE);
-        before = identifie(sh->p_cmd[i], before);
         if (before == REDIR_RIGHT && sh->p_cmd[i + 1] && identifie(sh->p_cmd[i + 1], before) == FILE)
         {
             redir_right(sh->p_cmd[i + 1], REDIR_RIGHT);

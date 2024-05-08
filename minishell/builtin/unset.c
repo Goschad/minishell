@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 11:26:59 by jguerin           #+#    #+#             */
-/*   Updated: 2024/04/26 11:14:43 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/05/08 15:10:26 by jguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ft_unset(char **cmd, char **argv, t_shell *shell)
 	while (cmd[j])
 	{
 		i = ft_checkenv2(cmd[j], shell->env);
-		if (i >= 0 && format_check(cmd[j], shell) == 0)
+		if (i >= 0 && format_check_unset(cmd[j], shell) == 0)
 		{
 			cpy = ft_tabdup(shell->env);
 			tab_free(shell->env);

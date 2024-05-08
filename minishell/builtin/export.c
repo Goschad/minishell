@@ -6,7 +6,7 @@
 /*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 11:26:51 by jguerin           #+#    #+#             */
-/*   Updated: 2024/05/08 14:26:19 by jguerin          ###   ########.fr       */
+/*   Updated: 2024/05/08 15:07:22 by jguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,20 +62,33 @@ void cpy_env(char *cmd, t_shell *shell)
 
 void	ft_export(char **cmd, char **argv, t_shell *shell)
 {
+	char	**cpy;
 	int		i;
 	int		j;
 	int		flag;
 
-	((void)0, i = 0, j = 1, flag = 0);
+	i = 0;
+	j = 1;
+	flag = 0;
 	if (shell->argc == 1)
 		return (sort_env(argv, env_len(argv)));
 	while (cmd[j])
 	{
 		i = ft_checkenv(cmd[j], shell->env);
 		if (i >= 0 && format_check(cmd[j], shell) == 0)
-			modify_env(cmd[j], shell);
+		{
+			free(shell->env[i]);
+			shell->env[i] = ft_strdup(cmd[j]);
+			shell->status = 0;
+		}
 		else if (i == -1 && format_check(cmd[j], shell) == 0)
-			cpy_env(cmd[j], shell);
+		{
+			cpy = ft_tabdup(shell->env);
+			tab_free(shell->env);
+			shell->env = add_env(cpy, cmd[j]);
+			tab_free(cpy);
+			shell->status = 0;
+		}
 		else if (format_check(cmd[j], shell) == 1)
 			flag = 1;
 		j++;

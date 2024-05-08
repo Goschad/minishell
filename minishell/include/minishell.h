@@ -226,6 +226,7 @@ int 		command_exists(char *command, int i);
 int			basic(int argc, char **env, t_shell *shell);
 int			char_cmp(char *str, char *reject);
 int			format_check(char *arg, t_shell *shell);
+int			format_check_unset(char *arg, t_shell *shell);
 int			nb_arg(char **arg);
 int			is_flag_valid(char *str);
 int			is_d(int n);
