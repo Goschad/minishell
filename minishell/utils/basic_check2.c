@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   basic_check2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:52:02 by jguerin           #+#    #+#             */
 /*   Updated: 2024/05/08 17:05:57 by jguerin          ###   ########.fr       */

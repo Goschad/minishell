@@ -55,6 +55,7 @@
 # define TOKEN_ERR_SHORT "minishell: syntax error near unexpected token\n"
 # define TOKEN_NL_ERR "minishell: syntax error near unexpected token `newline'\n"
 # define AMBIG_ERR ": ambiguous redirect\n"
+# define ID_ERR "minishell : invalid identifier\n"
 
 // --- [ structure ] --- //
 
@@ -129,7 +130,7 @@ int		reboot_line(char *readed);
 char	*quoted_line(char *line);
 int		check_quote(char *s);
 
-char	*rebuild_space_line(char *readed, int j, int in_q);
+char	*rebuild_space_line(char *r, int j, int in_q);
 
 char	**cut_cmd(char *line);
 
