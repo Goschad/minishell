@@ -6,7 +6,7 @@
 /*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 22:53:47 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/05/08 13:30:36 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/05/08 17:27:00 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,11 +110,8 @@ static void	print_sorted_env(char **tab, int i)
 					write(1, "\"\n", 2);
 			}
 			else if (tab[j][i + 1] == '\0' && flag == 1)
-			{
-				write(1, &tab[j][i], 1);
-				write(1, "\"\n", 2);
-				flag = 0;
-			}
+				((void)0, write(1, &tab[j][i], 1),
+					write(1, "\"\n", 2), flag = 0);
 			else
 				write(1, &tab[j][i], 1);
 		}
