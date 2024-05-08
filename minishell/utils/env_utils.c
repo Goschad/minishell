@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 22:53:47 by mbouaza           #+#    #+#             */
 /*   Updated: 2024/05/08 17:27:00 by mbouaza          ###   ########.fr       */
@@ -147,4 +147,3 @@ void	sort_env(char **tab, int env_len)
 	}
 	print_sorted_env(tab, -1);
 }
-

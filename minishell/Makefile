@@ -54,8 +54,7 @@ SRCS = 	main.c \
 		bonus/seconde_type.c \
 		bonus/third_type.c \
 		get_next_line/get_next_line.c \
-		get_next_line/get_next_line_utils.c \
-		utils/tmp.c
+		get_next_line/get_next_line_utils.c
 
 # utils/errors.c \
 

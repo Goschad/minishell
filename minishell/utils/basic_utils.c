@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   basic_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:51:05 by mbouaza           #+#    #+#             */
 /*   Updated: 2024/05/08 17:20:33 by mbouaza          ###   ########.fr       */
@@ -14,12 +14,12 @@
 
 // later ... //
 
-int ft_strcmp(char *s1, char *s2)
+int	ft_strcmp(char *s1, char *s2)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
-	while(s1[i] != '\0' && s2[i] != '\0' && s1[i] == s2[i])
+	while (s1[i] != '\0' && s2[i] != '\0' && s1[i] == s2[i])
 		i++;
 	return (s1[i] - s2[i]);
 }
@@ -47,12 +47,12 @@ char	*ft_join(char *s1, char *s2)
 	return (newstr);
 }
 
-char *make_it_one(char **tab)
+char	*make_it_one(char **tab)
 {
-	int i;
-	int j;
-	char *str;
-	char *cpy;
+	int		i;
+	int		j;
+	char	*str;
+	char	*cpy;
 
 	((void)0, j = 0, i = 0, str = NULL, cpy = NULL);
 	if (tab[i + 1])
@@ -101,12 +101,16 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	str[j] = '\0';
 	return (str);
 }
+
 int	ft_atoi(char *str)
 {
-	int i = 0;
-	int result = 0;
-	int sign = 1;
+	int	i;
+	int	result;
+	int	sign;
 
+	i = 0;
+	result = 0;
+	sign = 1;
 	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
 		i++;
 	if (str[i] == '-')
@@ -120,5 +124,3 @@ int	ft_atoi(char *str)
 	}
 	return (sign * result);
 }
-
-
