@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   launch_shell.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:22:33 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/05/08 16:34:18 by jguerin          ###   ########.fr       */
+/*   Updated: 2024/05/08 16:53:54 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,7 @@ void	launch(t_shell *shell)
 				parse(readed, 0, shell);
 		}
 		else if (!readed)
-		{
-			printf("exit\n");
 			shell->mini = 2;
-		}
 		free(readed);
 	}
 }

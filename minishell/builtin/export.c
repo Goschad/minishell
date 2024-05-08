@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 11:26:51 by jguerin           #+#    #+#             */
-/*   Updated: 2024/05/08 16:07:07 by jguerin          ###   ########.fr       */
+/*   Updated: 2024/05/08 17:04:26 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,24 +39,17 @@ char	**add_env(char **env, char *var)
 	return (new);
 }
 
-void	modify_env(char *cmd, t_shell *shell)
+static void pre1(t_shell *sh, char **cmd, int j, int i)
 {
-	int	i;
-
-	i = 0;
-	free(shell->env[i]);
-	shell->env[i] = ft_strdup(cmd);
-	shell->status = 0;
+	free(sh->env[i]);
+	sh->env[i] = ft_strdup(cmd[j]);
+	sh->status = 0;
 }
 
-void	cpy_env(char *cmd, t_shell *shell)
+static void pre2(t_shell *shell, char **cpy, int j, char **cmd)
 {
-	char	**cpy;
-
-	cpy = ft_tabdup(shell->env);
 	tab_free(shell->env);
-	shell->env = add_env(cpy, cmd);
-	tab_free(cpy);
+	shell->env = add_env(cpy, cmd[j]);
 	shell->status = 0;
 }
 
@@ -67,37 +60,25 @@ void	ft_export(char **cmd, char **argv, t_shell *shell)
 	int		j;
 	int		flag;
 
-	i = 0;
-	j = 1;
-	flag = 0;
+	((void)0, i = 0, j = 0, flag = 0);
 	if (shell->argc == 1)
 		return (sort_env(argv, env_len(argv)));
-	while (cmd[j])
+	while (cmd[++j])
 	{
 		i = ft_checkenv(cmd[j], shell->env);
 		if (i >= 0 && format_check(cmd[j], shell) == 0)
-		{
-			free(shell->env[i]);
-			shell->env[i] = ft_strdup(cmd[j]);
-			shell->status = 0;
-		}
+			pre1(shell, cmd, j, i);
 		else if (i == -1 && format_check(cmd[j], shell) == 0)
 		{
 			cpy = ft_tabdup(shell->env);
-			tab_free(shell->env);
-			shell->env = add_env(cpy, cmd[j]);
+			pre2(shell, cpy, j, cmd);
 			tab_free(cpy);
-			shell->status = 0;
 		}
 		else if (format_check(cmd[j], shell) == 1)
 			flag = 1;
-		j++;
 	}
 	if (flag == 1)
-	{
-		shell->status = 1;
-		printf("minishell : invalid identifier\n");
-	}
+		((void)0, shell->status = 1, printf(ID_ERR));
 }
 
 /*	1er if : var d'env existe et aucune erreur de format

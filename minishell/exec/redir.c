@@ -40,9 +40,9 @@ int	redir(t_shell *sh, int before)
 	int		i;
 	char	**cpy;
 
-	i = 0;
+	i = -1;
 	cpy = ft_tabdup(sh->p_cmd);
-	while (sh->p_cmd[i])
+	while (sh->p_cmd[++i])
 	{
 		before = identifie(sh->p_cmd[i], before);
 		if (before == REDIR_RIGHT && sh->p_cmd[i + 1]
@@ -59,7 +59,6 @@ int	redir(t_shell *sh, int before)
 		}
 		else
 			redir_v2(&before, &i, sh);
-		i++;
 	}
 	tab_free(cpy);
 	return (TRUE);
