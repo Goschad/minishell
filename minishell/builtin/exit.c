@@ -6,7 +6,7 @@
 /*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 10:47:08 by jguerin           #+#    #+#             */
-/*   Updated: 2024/05/08 14:43:15 by jguerin          ###   ########.fr       */
+/*   Updated: 2024/05/08 16:06:56 by jguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	exit_value(int n, char *str, t_shell *shell)
 
 int	ex(int n, int *test, char *str, t_shell *shell)
 {
-	if (n == 1 )
+	if (n == 1)
 	{
 		print_exit();
 		exit_value(1, str, shell);

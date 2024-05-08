@@ -12,10 +12,10 @@
 
 #include "../include/minishell.h"
 
-static int supp_bin(char *f)
+static int	supp_bin(char *f)
 {
-	if (ft_strlen(f) >= 5 && f[5] && f[0] == '/' && f[1] == 'b' &&  f[2] == 'i' &&  f[3] == 'n'
-		&&  f[4] == '/' && f[5] != '\0')
+	if (ft_strlen(f) >= 5 && f[5] && f[0] == '/' && f[1] == 'b'
+		&& f[2] == 'i' && f[3] == 'n' && f[4] == '/' && f[5] != '\0')
 		return (TRUE);
 	return (FALSE);
 }

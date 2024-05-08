@@ -6,7 +6,7 @@
 /*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 11:26:51 by jguerin           #+#    #+#             */
-/*   Updated: 2024/05/08 15:07:22 by jguerin          ###   ########.fr       */
+/*   Updated: 2024/05/08 16:07:07 by jguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	modify_env(char *cmd, t_shell *shell)
 	shell->status = 0;
 }
 
-void cpy_env(char *cmd, t_shell *shell)
+void	cpy_env(char *cmd, t_shell *shell)
 {
 	char	**cpy;
 
@@ -96,7 +96,7 @@ void	ft_export(char **cmd, char **argv, t_shell *shell)
 	if (flag == 1)
 	{
 		shell->status = 1;
-		printf("Minishell : invalid identifier\n");
+		printf("minishell : invalid identifier\n");
 	}
 }
 

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   conversion.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:34:36 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/04/30 08:09:02 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/05/08 16:36:50 by jguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-static void despair(char **s1, char **s2, int *i)
+static void	despair(char **s1, char **s2, int *i)
 {
 	*i = -1;
 	if (*s1)

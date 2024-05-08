@@ -6,7 +6,7 @@
 /*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:52:02 by jguerin           #+#    #+#             */
-/*   Updated: 2024/05/08 15:10:05 by jguerin          ###   ########.fr       */
+/*   Updated: 2024/05/08 15:57:57 by jguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_isalpha(int c)
 {
-	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') && (c == '_'))
 		return (1);
 	return (0);
 }
@@ -39,7 +39,7 @@ int	format_check(char *arg, t_shell *shell)
 	flag = 0;
 	while (arg[current] && arg[current] != '=')
 	{
-		if (!ft_isalpha(arg[current]) || is_d(arg[current]))
+		if (!ft_isalpha(arg[0]) || is_d(arg[0]))
 			flag = 1;
 		current++;
 	}

@@ -6,7 +6,7 @@
 /*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:23:18 by jguerin           #+#    #+#             */
-/*   Updated: 2024/05/08 14:24:09 by jguerin          ###   ########.fr       */
+/*   Updated: 2024/05/08 16:13:29 by jguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,14 @@ int	char_cmp(char *str, char *reject)
 		i++;
 	}
 	return (0);
+}
+
+int	add_argc(char **argv)
+{
+	int	i;
+
+	i = 0;
+	while (argv[i])
+		i++;
+	return (i);
 }

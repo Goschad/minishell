@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 04:09:26 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/05/08 09:03:08 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/05/08 16:47:01 by jguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-static int count_pipe(char **cmds)
+static int	count_pipe(char **cmds)
 {
-	int n;
-	int i;
+	int	n;
+	int	i;
 
 	i = 0;
 	n = 0;
@@ -28,9 +28,9 @@ static int count_pipe(char **cmds)
 	return (n);
 }
 
-static char **pre_v2(char *str, t_shell *sh)
+static char	**pre_v2(char *str, t_shell *sh)
 {
-	char **tab;
+	char	**tab;
 
 	tab = NULL;
 	change_nl(str);
@@ -42,7 +42,7 @@ static char **pre_v2(char *str, t_shell *sh)
 
 static int	pre_v1(char *str, t_shell *sh)
 {
-	char *str2;
+	char	*str2;
 
 	str2 = ft_strdup(str);
 	sh->all = cut_cmd(str2);
@@ -54,7 +54,7 @@ static int	pre_v1(char *str, t_shell *sh)
 	return (TRUE);
 }
 
-static void exec(char **tab, t_shell *sh)
+static void	exec(char **tab, t_shell *sh)
 {
 	sh->all = wildcard(tab);
 	sh->pipl.n_steps = count_pipe(sh->all) + 1;
@@ -63,17 +63,17 @@ static void exec(char **tab, t_shell *sh)
 	unlink("./.heredoc");
 }
 
-int parse(char *readed, int i, t_shell *shell)
+int	parse(char *readed, int i, t_shell *shell)
 {
 	char *cpyy;
 	char *ne_cpy;
 	char **cpy;
-	
+
 	cpy = NULL;
 	cpyy = ft_strdup(readed);
 	ne_cpy = ft_strdup(readed);
 	if (pre_v1(cpyy, shell) == FALSE)
-		return (free(ne_cpy),free(cpyy), FALSE);
+		return (free(ne_cpy), free(cpyy), FALSE);
 	cpyy = env_conversion(cpyy, shell->env, -1, shell);
 	if (banned(cpyy) == FALSE)
 		return (free(ne_cpy), free(cpyy), FALSE);

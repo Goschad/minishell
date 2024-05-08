@@ -164,6 +164,7 @@ void		init_shell(t_shell *shell);
 
 int			var_c(char *s, int i);
 int			simp_char(char c, char *reject);
+int			add_argc(char **argv);
 
 /* utils redir */
 

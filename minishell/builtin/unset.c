@@ -6,7 +6,7 @@
 /*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 11:26:59 by jguerin           #+#    #+#             */
-/*   Updated: 2024/05/08 15:10:26 by jguerin          ###   ########.fr       */
+/*   Updated: 2024/05/08 16:07:13 by jguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static char	**ft_add_env(char **env, int no)
 {
-	int 	j;
+	int		j;
 	int		i;
 	char	**new;
 
@@ -25,7 +25,6 @@ static char	**ft_add_env(char **env, int no)
 		return (NULL);
 	while (env[j])
 	{
-
 		if (j != no)
 			new[i++] = ft_strdup(env[j++]);
 		else

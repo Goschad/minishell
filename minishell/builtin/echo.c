@@ -6,7 +6,7 @@
 /*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 15:26:55 by jguerin           #+#    #+#             */
-/*   Updated: 2024/05/08 14:19:27 by jguerin          ###   ########.fr       */
+/*   Updated: 2024/05/08 16:06:47 by jguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ int	nb_arg(char **arg)
 
 int	is_flag_valid(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (str[i] != '-')
 		return (1);
 	else if (str[i] == '-' && str[i + 1] == '\0')
-		return(1);
+		return (1);
 	i++;
 	while (str[i] == 'n')
 		i++;
@@ -65,5 +65,4 @@ void	echo(char **args, t_shell *shell)
 	if (n_flag == 0)
 		write(1, "\n", 1);
 	return (set_status(0, shell));
-	
 }

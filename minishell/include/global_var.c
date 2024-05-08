@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   global_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 13:00:13 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/05/08 13:03:11 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/05/08 16:28:11 by jguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "global_var.h"
 
-int g_var = 0;
+int	g_var = 0;

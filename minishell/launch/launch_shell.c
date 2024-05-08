@@ -3,28 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   launch_shell.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:22:33 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/05/08 13:13:37 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/05/08 16:34:18 by jguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-static void remakepp(char **readed)
+static void	remakepp(char **readed)
 {
-	char *cpy;
-	
+	char	*cpy;
+
 	cpy = ft_strdup(*readed);
 	free(*readed);
 	*readed = rebuild_space_line(cpy, 0, 0);
 	free(cpy);
 }
 
-int banned(char *readed)
+int	banned(char *readed)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!ft_strcmp(readed, ""))
@@ -38,11 +38,11 @@ int banned(char *readed)
 	return (1);
 }
 
-void launch(t_shell *shell)
+void	launch(t_shell *shell)
 {
-	char *readed;
-	char *cpy;
-	
+	char	*readed;
+	char	*cpy;
+
 	readed = NULL;
 	cpy = NULL;
 	while (shell->mini == 1)
@@ -55,7 +55,7 @@ void launch(t_shell *shell)
 		if (readed && banned(readed) == TRUE)
 		{
 			if (readed && ft_strcmp("", readed))
-			 	history(readed);
+				history(readed);
 			remakepp(&readed);
 			if (reboot_line(readed) == TRUE && check_quote(readed))
 				parse(readed, 0, shell);
