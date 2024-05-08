@@ -6,7 +6,7 @@
 /*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 11:26:51 by jguerin           #+#    #+#             */
-/*   Updated: 2024/04/26 03:59:02 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/05/08 13:30:56 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,16 @@ int	format_check(char *arg, t_shell *shell)
 		current++;
 	}
 	if (flag == 0 && char_cmp(arg, "=") == 1)
+	{
+		printf("eeee\n");
 		return (0);
+	}
 	else if (flag == 1)
+	{
+		printf("eeeddd\n");
 		return (1);
-	return (0);
+	}
+	return (1);
 }
 
 int	env_len(char **tab)
@@ -116,7 +122,7 @@ void	ft_export(char **cmd, char **argv, t_shell *shell)
 	if (flag == 1)
 	{
 		shell->status = 1;
-		printf("Minishell : invalid identifier\n");
+		printf("minishell : invalid identifier\n");
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:22:33 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/04/30 07:33:33 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/05/08 13:13:37 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void launch(t_shell *shell)
 	cpy = NULL;
 	while (shell->mini == 1)
 	{
-		// token en debut error
 		cpy = actual_path();
+		g_var = 0;
 		readed = readline(cpy);
 		free(cpy);
 		cpy = NULL;
@@ -61,7 +61,10 @@ void launch(t_shell *shell)
 				parse(readed, 0, shell);
 		}
 		else if (!readed)
+		{
+			printf("exit\n");
 			shell->mini = 2;
+		}
 		free(readed);
 	}
 }

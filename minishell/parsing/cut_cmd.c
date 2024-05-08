@@ -6,7 +6,7 @@
 /*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 04:28:53 by GIGI              #+#    #+#             */
-/*   Updated: 2024/04/30 08:08:47 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/05/08 08:32:16 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // test good "pa  rt"e zcaca"popo"'zzzz'
 
-static void make_him_back(char **cmds, char **quoted, int t)
+/*static void make_him_back(char **cmds, char **quoted, int t)
 {
     int in_q;
     int i;
@@ -22,24 +22,28 @@ static void make_him_back(char **cmds, char **quoted, int t)
     int x;
 
     ((void)0, i = 0, j = 0, in_q = 0, x = 0);
-
     while (cmds[i] && quoted[t])
     {
         ((void)0, j = 0, in_q = 0);
-        while (cmds[i][j])
+        while (cmds[i] && cmds[i][j])
         {
             x = 0;
             if (update(cmds[i][j], &in_q))
             {
-                while (quoted[t] && quoted[t][x] && cmds[i][j])
-                    cmds[i][j++] = quoted[t][x++];
+                while (quoted[t] && cmds[i] && quoted[t][x] && cmds[i][j])
+                {
+                    printf("quo => %c | cmd => %c\n", quoted[t][x], cmds[i][j]);
+                    // cmds[i][j++] = quoted[t][x++];
+                    j++;
+                    x++;
+                }
                 t++;
             }
             j++;
         } 
         i++;
     }
-}
+}*/
 
 static char **sub_quoted_str(char *line, int i, int j)
 {
@@ -84,7 +88,7 @@ static void fill_line(char *line)
             while (line[i] && !update(line[i], &in_q))
             {
                 if (line[i] == ' ')
-				    line[i++] = '0';
+				    line[i++] = '^';
                 else
                     i++;
             }
@@ -92,6 +96,33 @@ static void fill_line(char *line)
         }
         else
             i++;
+    }
+}
+
+static void back(char **s, int i, int j)
+{
+    int in_q;
+
+    in_q = 0;
+    while (s[i])
+    {
+        while (s[i][j])
+        {
+            if (update(s[i][j], &in_q))
+            {
+                j++;
+                while (!update(s[i][j], &in_q))
+                {
+                    if (s[i][j] == '^')
+                        s[i][j] = ' ';
+                    j++;
+                }
+            }
+            in_q = 0;
+            j++;
+        }
+        i++;
+        j = 0;
     }
 }
 
@@ -105,7 +136,7 @@ char **cut_cmd(char *line)
     quoted = sub_quoted_str(line, 0, 0);
     fill_line(line);
     cmds = ft_split(line, ' ');
-    make_him_back(cmds, quoted, 0);
+    back(cmds, 0, 0);
     tab_free(quoted);
     return (cmds);
 }

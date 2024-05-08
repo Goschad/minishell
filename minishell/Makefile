@@ -5,6 +5,7 @@ CC	 =	@gcc
 FLAGS = -Wall -Werror -Wextra
 
 SRCS = 	main.c \
+		include/global_var.c \
 		builtin/env.c \
 		builtin/echo.c \
 		builtin/pwd.c \

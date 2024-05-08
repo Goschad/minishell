@@ -6,7 +6,7 @@
 /*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 02:22:07 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/04/27 07:34:09 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/05/08 09:24:24 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,33 +21,41 @@ static int spaced_verif(char *readed, int i, int len)
 
 	/* '|' */
 		
-	if (readed[i] == '|' && readed[i + 1] != ' ')
+	if (readed && readed[i] && readed[i + 1] && readed[i] == '|' && readed[i + 1] != ' ')
 		return (1);
-	if (readed[i] != ' ' && readed[i] != '|' && readed[i - 1] == '|')
+	if (readed && readed[i - 1] && readed[i] && readed[i] != ' ' && readed[i] != '|' && readed[i - 1] == '|')
 		return (1);
 
 	/* '>>' */
 
-	if (i < len - 2 && readed[i] != ' ' && readed[i - 1] == '>' && readed[i - 2] == '>')
-		return (1);
+	if (readed && i < len - 2 && readed[i] && readed[i] != ' ')
+	{
+		if (readed[i - 1] && readed[i - 1] == '>')
+			if (readed[i - 2] && readed[i - 2] == '>')
+				return (1);
+	}
 
 	/* '<<' */
 
-	if (i < len - 2 && readed[i] != ' ' && readed[i - 1] == '<' && readed[i - 2] == '<')
-		return (1);
+	if (readed && i < len - 2 && readed[i] && readed[i] != ' ')
+	{
+		if (readed[i - 1] && readed[i - 1] == '<')
+			if (readed[i - 2] && readed[i - 2] == '<')
+				return (1);
+	}
 
 	/* '>' */
 
-	if (readed[i] == '>' && readed[i - 1] != ' '&& readed[i - 1] != '>')
+	if (readed && readed[i - 1] && readed[i] && readed[i] == '>' && readed[i - 1] != ' '&& readed[i - 1] != '>')
 		return (1);
-	if (readed[i] != ' ' && readed[i] != '>' && readed[i - 1] == '>' && readed[i + 1] != '>')
+	if (readed && readed[i - 1] && readed[i] && readed[i + 1] && readed[i] != ' ' && readed[i] != '>' && readed[i - 1] == '>' && readed[i + 1] != '>')
 		return (1);
 
 	/* '<' */
 
-	if (readed[i] == '<' && readed[i - 1] != ' ' && readed[i - 1] != '<')
+	if (readed && readed[i - 1] && readed[i] && readed[i] == '<' && readed[i - 1] != ' ' && readed[i - 1] != '<')
 		return (1);
-	if (readed[i] != ' ' && readed[i] != '<' && readed[i - 1] == '<' && readed[i + 1] != '<')
+	if (readed && readed[i - 1] && readed[i] && readed[i + 1] && readed[i] != ' ' && readed[i] != '<' && readed[i - 1] == '<' && readed[i + 1] != '<')
 		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 22:47:18 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/05/07 16:02:59 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/05/08 11:16:32 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,12 @@ void shell_execve(char **env, t_shell *shell)
 	char **bash;
 
 	((void)0, i = 0, cpy = NULL, str = ft_getenv("PATH", shell->env));
-	((void)0, str = ft_getenv("PATH", shell->env), bash = give_path(str));
+	((void)0, bash = give_path(str));
 	free(str);
 	while (bash && bash[i])
 	{
 		str = ft_join(bash[i++], "/");
-		cpy = ft_join(str, shell->p_cmd[0]); // a changer
+		cpy = ft_join(str, shell->p_cmd[0]);
 		free(str);
 		execve(cpy, shell->p_cmd, env);
 		free(cpy);

@@ -6,7 +6,7 @@
 /*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 07:00:42 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/04/30 07:28:37 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/05/08 11:03:08 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,21 +48,22 @@ void st_cmd(t_shell *sh, int t1, int t2)
 
     i = 0;
     j = 0;
-    new = malloc(sizeof(char *) * (env_len(sh->p_cmd)));
+    new = ft_tabdup(sh->p_cmd);
+    tab_free(sh->p_cmd);
+    sh->p_cmd = malloc(sizeof(char *) * ((env_len(new) - 2) + 1));
     if (!new)
         return ;
-    while (sh->p_cmd[i] && sh->p_cmd[t1] && sh->p_cmd[t2])
+    while (new[i])
     {
-        if (i <= env_len(sh->p_cmd) && i != t1 && i != t2)
-            new[j++] = ft_strdup(sh->p_cmd[i++]);
-        else
-            i++;
+        if (i != t1 && i != t2)
+        {
+            sh->p_cmd[j] = ft_strdup(new[i]);
+            j++;
+        }
+        i++;
     }
-    new[j] = NULL;
-    tab_free(sh->p_cmd);
-    sh->p_cmd = ft_tabdup(new);
-    if (new)
-        free(new);
+    sh->p_cmd[j] = NULL;
+    tab_free(new);
 }
 
 void redir_left(char *file_name, char *pass, int redir_type)
@@ -72,6 +73,7 @@ void redir_left(char *file_name, char *pass, int redir_type)
     fd = 0;
     if (pass && redir_type == REDIR_D_LEFT)
     {
+        heredoc(pass);
         fd = open(".heredoc", O_RDONLY, S_IRWXU | S_IRWXG | S_IRWXO);
         if (fd <= 0)
             return ;

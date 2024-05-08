@@ -6,7 +6,7 @@
 /*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 16:34:40 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/04/30 07:16:16 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/05/08 09:07:54 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,13 @@ void heredoc(char *pass)
     char	*line;
 
     signal(SIGINT, SIG_DFL);
-	// rl_catch_signals = 1;
+	rl_catch_signals = 1;
 	fd = open(".heredoc", O_CREAT | O_WRONLY | O_TRUNC, 0777);;
 	while (1)
 	{
 		line = readline("> ");
+        if (!line)
+             break;
         if (!ft_strcmp(pass, line))
         {
             free(line);
@@ -52,4 +54,5 @@ void heredoc(char *pass)
         free(line);
 	}
 	close(fd);
+    exit(0);
 }

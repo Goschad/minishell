@@ -6,7 +6,7 @@
 /*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 04:09:26 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/05/07 13:52:13 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/05/08 09:03:08 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ static int	pre_v1(char *str, t_shell *sh)
 	free(str2);
 	if (unexpected(-1, sh->all) == FALSE || redir_err(sh->all) == FALSE)
 		return (tab_free(sh->all), FALSE);
-	make_heredoc(sh->all, -1);
 	tab_free(sh->all);
 	sh->all = NULL;
 	return (TRUE);

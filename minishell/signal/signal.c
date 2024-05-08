@@ -6,7 +6,7 @@
 /*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 12:42:54 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/05/07 16:25:07 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/05/08 13:11:34 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,28 @@
 static void	ctrl_c(int plop)
 {
 	(void) plop;
-	if (1)
+	if (g_var == 0)
 	{
 		write(1, "\n", 1);
 		rl_replace_line("", 0);
 		rl_on_new_line();
 		rl_redisplay();
 	}
-	return ;
+	else
+	{
+		write(1, "\n", 1);
+		rl_replace_line("", 0);
+		rl_on_new_line();
+	}
 }
 
-static __sighandler_t	ctrl_backslash(void)
+void	ctrl_backslash(void)
 {
 }
 
 void	build_signal(void)
 {
-	signal(SIGQUIT, ctrl_backslash());
+	signal(SIGQUIT, (void *)ctrl_backslash);
 	signal(SIGINT, ctrl_c);
 	rl_catch_signals = 0;
 }

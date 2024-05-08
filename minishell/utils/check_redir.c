@@ -6,7 +6,7 @@
 /*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:13:19 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/05/07 15:53:30 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/05/08 08:35:49 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ static int nl_err(char **str, int bf)
     j = 0;
     while (str[j])
     {
-        if (bf >= REDIR_LEFT && bf <= REDIR_D_LEFT && !str[j])
-            return (FALSE);
         bf = identifie(str[j], bf);
+        if (bf >= REDIR_LEFT && bf <= REDIR_D_LEFT && !str[j + 1])
+            return (FALSE);
         j++;
     }
     return (TRUE);

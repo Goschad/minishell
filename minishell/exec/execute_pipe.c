@@ -39,8 +39,15 @@ static void pipeline_cut(int i, int *fd, int *pipefd, t_shell *sh)
         close(pipefd[1]);
     }
     if (redir(sh, -1) != FALSE)
+    {
         find_bull(sh, sh->p_cmd, i);
-    tab_free(sh->p_cmd);     
+    }
+    else
+    {
+        tab_free(sh->p_cmd);
+        exit(1);
+    }   
+    tab_free(sh->p_cmd);
     sh->p_cmd = NULL;
 }
 
@@ -80,7 +87,7 @@ static void parse_quotes(t_shell *sh)
         return ;
     tab_free(sh->p_cmd);
     sh->p_cmd = NULL;
-    sh->p_cmd = malloc(sizeof(char *) * env_len(tab) + 1);
+    sh->p_cmd = malloc(sizeof(char *) * (env_len(tab) + 1));
     while (tab[i])
     {
         sh->p_cmd[i] = converte_line(tab[i], -1, 0);
@@ -88,10 +95,12 @@ static void parse_quotes(t_shell *sh)
     }
     sh->p_cmd[i] = NULL;
     tab_free(tab);
+    return ;
 }
 
 static void pid_cut(t_shell *shell, pid_t *pid, int i)
 {
+    g_var = 1;
     shell->p_cmd = cut_cmd(shell->cmd[i]);
     parse_quotes(shell);
 	shell->argc = add_argc(shell->p_cmd);
@@ -125,9 +134,9 @@ void execute_pipeline(t_shell *shell, int i, int j, int input_fd)
     }
     while (++j <= shell->pipl.n_steps - 1)
     {
+        waitpid(pid, &shell->var.i, WIFEXITED(pid));
         wait(NULL);
-        /* waitpid(pid, &shell->var.i, WIFEXITED(pid));
         if (shell->forked_cmd == 1)
-		    shell->status = WEXITSTATUS(shell->var.i);*/
+		    shell->status = WEXITSTATUS(shell->var.i);
     }
 }
