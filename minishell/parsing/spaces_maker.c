@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   spaces_maker.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 02:22:07 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/05/08 17:13:20 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/05/08 17:35:38 by jguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // | < << > >>
 
-static int ez(char *r, int i)
+static int	ez(char *r, int i)
 {
 	if (r && r[i - 1] && r[i] && r[i] == '>' && r[i - 1] != ' '
 		&& r[i - 1] != '>')
@@ -31,7 +31,7 @@ static int ez(char *r, int i)
 	return (0);
 }
 
-static int spaced_verif(char *r, int i, int len)
+static int	spaced_verif(char *r, int i, int len)
 {
 	if (!(i > 0 && i < len - 1))
 		return (0);
@@ -54,17 +54,17 @@ static int spaced_verif(char *r, int i, int len)
 	return (ez(r, i));
 }
 
-static int rebuild_space_len(char *r, int i)
+static int	rebuild_space_len(char *r, int i)
 {
-	int j;
-	int in_q;
+	int	j;
+	int	in_q;
 
 	j = 0;
 	in_q = 0;
 	while (r && r[i])
 	{
 		if (r[j] && spaced_verif(r, i, ft_strlen(r)))
-				((void)0, i++, j++);
+			((void)0, i++, j++);
 		else if (update(r[i], &in_q))
 		{
 			i++;
@@ -80,10 +80,10 @@ static int rebuild_space_len(char *r, int i)
 
 // norm
 
-char *rebuild_space_line(char *r, int j, int in_q)
+char	*rebuild_space_line(char *r, int j, int in_q)
 {
-	int i;
-	char *new;
+	int		i;
+	char	*new;
 
 	i = 0;
 	new = malloc(sizeof(char) * (rebuild_space_len(r, 0) + 1));

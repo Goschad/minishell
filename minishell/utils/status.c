@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   status.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 23:16:49 by mbouaza           #+#    #+#             */
-/*   Updated: 2023/11/15 23:21:39 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/05/08 17:26:54 by jguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void set_status(int set, t_shell *shell)
+void	set_status(int set, t_shell *shell)
 {
 	shell->status = set;
 }

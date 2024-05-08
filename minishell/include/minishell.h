@@ -1,24 +1,35 @@
-# ifndef MINISHELL_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/08 17:38:03 by jguerin           #+#    #+#             */
+/*   Updated: 2024/05/08 17:39:39 by jguerin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef MINISHELL_H
 # define MINISHELL_H
 
 // --- [ include ] --- //
 
-# include <fcntl.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
+# include "../get_next_line/get_next_line.h"
+# include "global_var.h"
 # include <dirent.h>
 # include <errno.h>
+# include <fcntl.h>
+# include <readline/history.h>
+# include <readline/readline.h>
 # include <signal.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
 # include <sys/stat.h>
 # include <sys/types.h>
 # include <sys/wait.h>
-# include <readline/history.h>
-# include <readline/readline.h>
-# include <fcntl.h>
-# include "../get_next_line/get_next_line.h"
-# include <string.h>
-# include "global_var.h"
+# include <unistd.h>
 
 // --- [ define bool ] --- //
 
@@ -59,25 +70,25 @@
 
 // --- [ structure ] --- //
 
-struct Pipe
+typedef struct Pipe
 {
-	int n_steps;
-} typedef t_pipe;
+	int		n_steps;
+}	t_pipe;
 
-struct xt
+typedef struct xt
 {
 	int		i;
 	int		j;
 	int		k;
-} typedef t_exit;
+}	t_exit;
 
-struct shell
+typedef struct shell
 {
 	int		mini;
 	int		status;
 	int		redir;
 	int		argc;
-	int 	forked_cmd;
+	int		forked_cmd;
 	char	*path;
 	char	**heredoc;
 	char	**all;
@@ -85,17 +96,17 @@ struct shell
 	char	**n_c_cmd;
 	char	**cmd;
 	char	**env;
-	t_pipe  pipl;
+	t_pipe	pipl;
 	t_exit	var;
 
-} typedef t_shell;
+}	t_shell;
 
 // --- [ function ] --- //
 
 /* tmp */
 
-void	print_tab(char **tab);
-void 	tokenizer(char **test);
+void		print_tab(char **tab);
+void		tokenizer(char **test);
 
 /* builtins */
 
@@ -115,51 +126,51 @@ void		ft_unset(char **cmd, char **argv, t_shell *shell);
 
 /* launch */
 
-void	launch(t_shell *shell);
+void		launch(t_shell *shell);
 
 /* parsing */
 
-int		update(char c, int *in_q);
-int		update_sd(char c, int *in_q, int *qs, int *qd);
+int			update(char c, int *in_q);
+int			update_sd(char c, int *in_q, int *qs, int *qd);
 
-int		parse(char *readed, int i, t_shell *shell);
+int			parse(char *readed, int i, t_shell *shell);
 
-void	change_nl(char *readed);
-int		reboot_line(char *readed);
+void		change_nl(char *readed);
+int			reboot_line(char *readed);
 
-char	*quoted_line(char *line);
-int		check_quote(char *s);
+char		*quoted_line(char *line);
+int			check_quote(char *s);
 
-char	*rebuild_space_line(char *r, int j, int in_q);
+char		*rebuild_space_line(char *r, int j, int in_q);
 
-char	**cut_cmd(char *line);
+char		**cut_cmd(char *line);
 
-void	find_bull(t_shell *shell, char **cmd, int i);
-int		isnt_bull(t_shell *shell, char **cmd);
+void		find_bull(t_shell *shell, char **cmd, int i);
+int			isnt_bull(t_shell *shell, char **cmd);
 
-char	*env_conversion(char *s, char **env, int i, t_shell *mini);
+char		*env_conversion(char *s, char **env, int i, t_shell *mini);
 
 /* exec */
 
-void	shell_execve(char **env, t_shell *shell);
-void	execute_pipeline(t_shell *shell, int i, int j, int input_fd);
+void		shell_execve(char **env, t_shell *shell);
+void		execute_pipeline(t_shell *shell, int i, int j, int input_fd);
 
-int 	redir(t_shell *sh, int before);
+int			redir(t_shell *sh, int before);
 
-void 	heredoc(char *pass);
-int 	identifie(char *token, int before);
+void		heredoc(char *pass);
+int			identifie(char *token, int before);
 
 /* history */
 
-void	make_history(t_shell *shell);
-void	history(char *readed);
+void		make_history(t_shell *shell);
+void		history(char *readed);
 
 /* utils */
 
-char 		*actual_path(void);
+char		*actual_path(void);
 
 int			quotes_cmd_size(char *line);
-char 		**make_cmds(char **av, int pipeline, int i, int j);
+char		**make_cmds(char **av, int pipeline, int i, int j);
 
 void		init_shell(t_shell *shell);
 
@@ -169,62 +180,62 @@ int			add_argc(char **argv);
 
 /* utils redir */
 
-void 		st_cmd(t_shell *sh, int t1, int t2);
-void 		redir_right(char *file_name, int redir_type);
-void 		redir_left(char *file_name, char *pass, int redir_type);
-int 		redir_err(char **str);
-int 		id_n_co(t_shell *sh, int *bf, int i);
+void		st_cmd(t_shell *sh, int t1, int t2);
+void		redir_right(char *file_name, int redir_type);
+void		redir_left(char *file_name, char *pass, int redir_type);
+int			redir_err(char **str);
+int			id_n_co(t_shell *sh, int *bf, int i);
 
 /* utils heredoc */
 
-void 		make_heredoc(char **f, int bf);
-int 		unexpected(int token, char **f);	
-void 		heredoc_priority(int token, char **f);
+void		make_heredoc(char **f, int bf);
+int			unexpected(int token, char **f);
+void		heredoc_priority(int token, char **f);
 
 /* utils free */
 
-void	tab_free(char **tab);
-void	global_free(t_shell *shell);
-void 	multfree(char *s1, char *s2, char **t1, char **t2);
+void		tab_free(char **tab);
+void		global_free(t_shell *shell);
+void		multfree(char *s1, char *s2, char **t1, char **t2);
 
 /* utils print */
 
-void	ft_putchar_fd(char c, int fd);
-void	ft_putstr_fd(char *str, int fd);
-void 	ft_error(char *s1, char *s2, char *s3);
-void	put_error(char *exe, char *file, int err, char *error);
+void		ft_putchar_fd(char c, int fd);
+void		ft_putstr_fd(char *str, int fd);
+void		ft_error(char *s1, char *s2, char *s3);
+void		put_error(char *exe, char *file, int err, char *error);
 
 /* utils copy */
 
-char	*ft_strdup(char *s1);
-char	**ft_tabdup(char **tab);
+char		*ft_strdup(char *s1);
+char		**ft_tabdup(char **tab);
 
 /* utils basic */
 
 int			ft_strcmp(char *s1, char *s2);
 int			ft_atoi(char *str);
-char 		*ft_itoa(int nbr);
+char		*ft_itoa(int nbr);
 char		*ft_join(char *s1, char *s2);
-char 		*make_it_one(char **tab);
+char		*make_it_one(char **tab);
 char		*ft_substr(char *s, unsigned int start, size_t len);
 char		**ft_split(char const *s, char c);
 
 /* utils env */
 
-int 		id_n_co(t_shell *sh, int *bf, int i);
+int			id_n_co(t_shell *sh, int *bf, int i);
 int			check_env(char *s, char **env, int i);
 int			ft_checkenv(char *str, char **env);
 int			ft_checkenv2(char *str, char **env);
 int			env_len(char **tab);
 char		**add_env(char **env, char *var);
-char 		**give_path(char *str);
+char		**give_path(char *str);
 char		*ft_getenv(char *str, char **env);
 void		sort_env(char **tab, int env_len);
-void 		incr_shlvl(t_shell *shell);
+void		incr_shlvl(t_shell *shell);
 
 /* utils check */
 
-int 		command_exists(char *command, int i);
+int			command_exists(char *command, int i);
 int			basic(int argc, char **env, t_shell *shell);
 int			char_cmp(char *str, char *reject);
 int			format_check(char *arg, t_shell *shell);
@@ -236,32 +247,32 @@ int			str_is_num(char *str);
 int			ft_isalpha(int c);
 int			ft_isdigit(int c);
 int			ft_isalnum(int c);
-int 		banned(char *readed);
+int			banned(char *readed);
 void		is_neg(int n, t_shell *shell);
 
 /* signal */
 
-void 	build_signal(void);
+void		build_signal(void);
 
 /* status */
 
-void	set_status(int set, t_shell *shell);
+void		set_status(int set, t_shell *shell);
 
 /* bonus */
 
-char 	**wildcard(char **readed);
+char		**wildcard(char **readed);
 
-char	**get_dir(char *dir);
-int 	is_dir(char *dir);
+char		**get_dir(char *dir);
+int			is_dir(char *dir);
 
-int 	first(char *str);
-int 	seconde(char *str);
-int 	third(char *str);
+int			first(char *str);
+int			seconde(char *str);
+int			third(char *str);
 
-char 	*first_type(char *line, char **dir, int type);
+char		*first_type(char *line, char **dir, int type);
 
-char 	*seconde_type(char *line, char **dir);
+char		*seconde_type(char *line, char **dir);
 
-char 	*third_type(char *line, char **dir);
+char		*third_type(char *line, char **dir);
 
 #endif

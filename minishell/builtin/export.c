@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 11:26:51 by jguerin           #+#    #+#             */
-/*   Updated: 2024/05/08 17:04:26 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/05/08 17:35:58 by jguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,14 @@ char	**add_env(char **env, char *var)
 	return (new);
 }
 
-static void pre1(t_shell *sh, char **cmd, int j, int i)
+static void	pre1(t_shell *sh, char **cmd, int j, int i)
 {
 	free(sh->env[i]);
 	sh->env[i] = ft_strdup(cmd[j]);
 	sh->status = 0;
 }
 
-static void pre2(t_shell *shell, char **cpy, int j, char **cmd)
+static void	pre2(t_shell *shell, char **cpy, int j, char **cmd)
 {
 	tab_free(shell->env);
 	shell->env = add_env(cpy, cmd[j]);
