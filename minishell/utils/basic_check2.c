@@ -6,7 +6,7 @@
 /*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:52:02 by jguerin           #+#    #+#             */
-/*   Updated: 2024/02/26 13:56:06 by jguerin          ###   ########.fr       */
+/*   Updated: 2024/05/08 14:23:05 by jguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,24 @@ int	ft_isdigit(int c)
 int	ft_isalnum(int c)
 {
 	return (ft_isalpha(c) || ft_isdigit(c));
+}
+
+int	format_check(char *arg, t_shell *shell)
+{
+	int	current;
+	int	flag;
+
+	current = 0;
+	flag = 0;
+	while (arg[current] && arg[current] != '=')
+	{
+		if (!ft_isalpha(arg[current]) || is_d(arg[current]))
+			flag = 1;
+		current++;
+	}
+	if (flag == 0 && char_cmp(arg, "=") == 1)
+		return (0);
+	else if (flag == 1)
+		return (1);
+	return (2);
 }

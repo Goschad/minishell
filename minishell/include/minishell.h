@@ -106,7 +106,7 @@ void		pwd(t_shell *shell);
 
 void		ft_exit(char **argv, t_shell *shell, t_exit xt);
 
-void			ft_cd(char **argv, t_shell *shell);
+void		ft_cd(char **argv, t_shell *shell);
 
 void		ft_export(char **cmd, char **argv, t_shell *shell);
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbouaza <mbouaza@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 15:26:55 by jguerin           #+#    #+#             */
-/*   Updated: 2024/04/26 06:15:42 by mbouaza          ###   ########.fr       */
+/*   Updated: 2024/05/08 14:19:27 by jguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,17 @@ int	nb_arg(char **arg)
 
 int	is_flag_valid(char *str)
 {
-	if (*str != '-')
+	int i;
+
+	i = 0;
+	if (str[i] != '-')
 		return (1);
-	str++;
-	while (*str == 'n')
-		str++;
-	if (*str == '\0')
+	else if (str[i] == '-' && str[i + 1] == '\0')
+		return(1);
+	i++;
+	while (str[i] == 'n')
+		i++;
+	if (str[i] == '\0')
 		return (0);
 	else
 		return (1);

@@ -15,6 +15,7 @@ SRCS = 	main.c \
 		builtin/unset.c \
 		utils/path.c \
 		utils/basic_utils.c \
+		utils/basic_utils2.c \
 		utils/basic_check.c \
 		utils/basic_check2.c \
 		utils/print_type.c \

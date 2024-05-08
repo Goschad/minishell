@@ -1,0 +1,8 @@
+echo -
+export w
+export w=
+export
+export x
+export
+env
+exit
