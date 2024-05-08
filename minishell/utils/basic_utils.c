@@ -6,7 +6,7 @@
 /*   By: jguerin <jguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:51:05 by mbouaza           #+#    #+#             */
-/*   Updated: 2024/05/08 17:02:06 by jguerin          ###   ########.fr       */
+/*   Updated: 2024/05/08 17:20:33 by mbouaza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,7 @@ char	*make_it_one(char **tab)
 		if (!tab[i])
 			return (cpy);
 		else if (tab[i + 1])
-		{
 			str = ft_join(cpy, " ");
-		}
 		else if (tab[i])
 			str = ft_strdup(cpy);
 		free(cpy);
